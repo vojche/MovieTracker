@@ -36,14 +36,22 @@ namespace MovieTracker
             WebClient c = new WebClient();
             string data = c.DownloadString("http://www.omdbapi.com/?s=" + ime.Trim() + "&type=movie");
             JObject o = JObject.Parse(data);
-            JArray niza = (JArray)o["Search"];
 
-            foreach (JObject pom in niza)
+            if (o["Response"].ToString().Equals("True"))
             {
-                searchList.Add(new SearchMovie(pom["Title"].ToString(), (int)pom["Year"], pom["imdbID"].ToString(), pom["Poster"].ToString()));
-            }
+                JArray niza = (JArray)o["Search"];
 
-            searchList = searchList.OrderBy(x => x.year).ToList();
+                foreach (JObject pom in niza)
+                {
+                    searchList.Add(new SearchMovie(pom["Title"].ToString(), (int)pom["Year"], pom["imdbID"].ToString(), pom["Poster"].ToString()));
+                }
+
+                searchList = searchList.OrderBy(x => x.year).ToList();
+            }
+            else
+            {
+                 MessageBox.Show("Movie \"" + textBox4.Text + "\" doesn`t exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private int mesec(string mesec)
@@ -146,13 +154,17 @@ namespace MovieTracker
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            curr = listBox1.SelectedItem as SearchMovie;
-            textBox1.Text = curr.title;
-            textBox2.Text = curr.year.ToString();
-            curr.postaviPoster(pictureBox1);
-            addW.Enabled = true;
-            addWL.Enabled = true;
-            details.Enabled = true;
+            if(listBox1.SelectedIndex != -1)
+            {
+                curr = listBox1.SelectedItem as SearchMovie;
+                textBox1.Text = curr.title;
+                textBox2.Text = curr.year.ToString();
+                curr.postaviPoster(pictureBox1);
+                addW.Enabled = true;
+                addWL.Enabled = true;
+                details.Enabled = true;
+
+            }
 
             /*if (!film.poster.Equals("N/A"))
             {
