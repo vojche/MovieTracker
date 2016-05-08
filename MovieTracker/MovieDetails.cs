@@ -12,13 +12,13 @@ namespace MovieTracker
         public int runtime { get; set; }
         public List<string> genres;
         public string director { get; set; }
-        public List<string> actors;
+        public string actors { get; set; }
         public string plot { get; set; }
         public string language { get; set; }
         public float imdbRating { get; set; }
 
 
-        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, List<string> actors, string plot, string language, float imdbRating) : base(title, year, imdbID, poster)
+        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, string actors, string plot, string language, float imdbRating) : base(title, year, imdbID, poster)
         {
             this.release = release;
             this.runtime = runtime;
@@ -31,21 +31,30 @@ namespace MovieTracker
 
         }
 
+        public string Rating()
+        {
+            if (imdbRating == 0)
+                return "N/A";
+            else return imdbRating.ToString();
+        }
+
+
+        public string Runtime()
+        {
+            if (runtime == 0)
+                return "N/A";
+            else return runtime.ToString() + " min";
+        }
         public string Release()
         {
-            return release.Month + "." + release.Day + "." + release.Year;
-        }
-
-        public string Actors()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (string s in actors)
+            if(release.Year != 1550)
+                return release.Month + "." + release.Day + "." + release.Year;
+            else
             {
-                sb.Append(s + " ");
+                return "N/A";
             }
-            return sb.ToString();
         }
-
+                
         public string Genres()
         {
             StringBuilder sb = new StringBuilder();

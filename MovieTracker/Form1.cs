@@ -23,18 +23,21 @@ namespace MovieTracker
         public SearchMovie curr;
         public MovieDetails modalMovie;
         public static string x { get; set; }
+        public bool moreResults = false;
+        public bool nextB { get; set; }
+        public bool prevB { get; set; }
         public Form1()
         {
             InitializeComponent();
             searchList = new List<SearchMovie>();
         }
 
-        private void povleciSearchPodatoci(string ime)
+        private void povleciSearchPodatoci(string ime, int page)
         {
             searchList.Clear();
 
             WebClient c = new WebClient();
-            string data = c.DownloadString("http://www.omdbapi.com/?s=" + ime.Trim() + "&type=movie");
+            string data = c.DownloadString("http://www.omdbapi.com/?s=" + ime.Trim() + "&type=movie&page=" + page);
             JObject o = JObject.Parse(data);
 
             if (o["Response"].ToString().Equals("True"))
@@ -47,10 +50,25 @@ namespace MovieTracker
                 }
 
                 searchList = searchList.OrderBy(x => x.year).ToList();
+
+                int total = (int)o["totalResults"];
+                total = (int)Math.Ceiling((decimal)total / 10);
+                int pageNum = 0;
+                int.TryParse(pageNumber.Text, out pageNum);                
+                    
+                if (total == pageNum)
+                    nextB = false;
+                else nextB = true;
+
+                if (moreResults)
+                    next.Enabled = nextB;
+
+                checkBox1.Enabled = true;
             }
             else
             {
-                 MessageBox.Show("Movie \"" + textBox4.Text + "\" doesn`t exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Movie \"" + textBox4.Text + "\" doesn`t exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                checkBox1.Enabled = false;
             }
         }
 
@@ -103,24 +121,25 @@ namespace MovieTracker
 
         private void povleciDetalniPodatoci(string id)
         {
-
             WebClient c = new WebClient();
-            var data = c.DownloadString("http://www.omdbapi.com/?i=" + id + "&plot=full&r=json");
+            string data = c.DownloadString("http://www.omdbapi.com/?i=" + id + "&plot=full&r=json");
             JObject o = JObject.Parse(data);
-            string date = o["Released"].ToString();
-            string[] d = date.Split(' ');
-            int godina = 0;
-            int.TryParse(d[2], out godina);
-            int den = 0;
-            int.TryParse(d[0], out den);
-
-            List<string> actors = new List<string>();
-            //string ac = o["Actors"].ToString();
-            string[] ac2 = o["Actors"].ToString().Split(',');
-            foreach (string i in ac2)
+            DateTime released;
+            if (!o["Released"].ToString().Equals("N/A"))
             {
-                actors.Add(i.Trim());
+                string date = o["Released"].ToString();
+                string[] d = date.Split(' ');
+                int godina = 0;
+                int.TryParse(d[2], out godina);
+                int den = 0;
+                int.TryParse(d[0], out den);
+
+                released = new DateTime(godina, mesec(d[1]), den);
             }
+            else
+            {
+                released = new DateTime(1550, 01, 01);
+            }    
 
             List<string> genres = new List<string>();
             //string gen = o["Genre"].ToString();
@@ -131,11 +150,14 @@ namespace MovieTracker
             }
 
             string[] runtimeA = o["Runtime"].ToString().Split(' ');
-
             int runtime = 0;
             int.TryParse(runtimeA[0], out runtime);
-
-            modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), new DateTime(godina, mesec(d[1]), den), runtime, genres, o["Director"].ToString(), actors, o["Plot"].ToString(), o["Language"].ToString(), (float)o["imdbRating"]);
+            float imdbRating = 0;
+            if (!o["imdbRating"].ToString().Equals("N/A"))
+            {
+                imdbRating = (float)o["imdbRating"];
+            }
+            modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), imdbRating);
 
         }
 
@@ -143,12 +165,15 @@ namespace MovieTracker
         {
             if (textBox4.Text.Trim().Length != 0)
             {
-                povleciSearchPodatoci(textBox4.Text);
+                
+                pageNumber.Text = "1";
+                povleciSearchPodatoci(textBox4.Text, 1);                
+                moreResults = checkBox1.Checked = false;
                 listBox1.Items.Clear();
                 foreach (SearchMovie film in searchList)
                 {
                     listBox1.Items.Add(film);
-                }
+                }                
             }
         }
 
@@ -157,8 +182,7 @@ namespace MovieTracker
             if(listBox1.SelectedIndex != -1)
             {
                 curr = listBox1.SelectedItem as SearchMovie;
-                textBox1.Text = curr.title;
-                textBox2.Text = curr.year.ToString();
+                textBox1.Text = curr.title;                
                 curr.postaviPoster(pictureBox1);
                 addW.Enabled = true;
                 addWL.Enabled = true;
@@ -198,6 +222,66 @@ namespace MovieTracker
             povleciDetalniPodatoci(curr.imdbID);
             Modal modal = new MovieTracker.Modal(modalMovie, true, false);
             modal.ShowDialog();
+        }
+                
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (moreResults)
+            {
+                moreResults = false;
+                prev.Enabled = next.Enabled = moreResults;               
+            }
+            else
+            {
+                moreResults = true;
+                next.Enabled = nextB;
+            }
+            
+        }
+
+        private void next_Click(object sender, EventArgs e)
+        {
+           
+                int page = 0;
+                int.TryParse(pageNumber.Text, out page);
+                page += 1;
+                pageNumber.Text = page.ToString();
+                povleciSearchPodatoci(textBox4.Text, page);
+                listBox1.Items.Clear();
+                foreach (SearchMovie film in searchList)
+                {
+                    listBox1.Items.Add(film);
+                }
+                prev.Enabled = true;
+
+            
+        }
+
+        private void prev_Click(object sender, EventArgs e)
+        {
+            
+                int page = 0;
+                int.TryParse(pageNumber.Text, out page);
+                page -= 1;
+                pageNumber.Text = page.ToString();
+                povleciSearchPodatoci(textBox4.Text, page);
+                listBox1.Items.Clear();
+                foreach (SearchMovie film in searchList)
+                {
+                    listBox1.Items.Add(film);
+                }
+
+                if (page == 1)
+                    prev.Enabled = false;
+                else prev.Enabled = true;
+
+                next.Enabled = true;
+            
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {            
+            moreResults = checkBox1.Checked = checkBox1.Enabled = false;
         }
     }
 }

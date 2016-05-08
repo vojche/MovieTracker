@@ -33,7 +33,7 @@ namespace MovieTracker
             }
             else
             {
-                link = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Dialog-error-round.svg/2000px-Dialog-error-round.svg.png";
+                link = "https://cdn4.iconfinder.com/data/icons/project-document-std-pack-4/512/trailer-512.png";
             }
 
             var request = WebRequest.Create(link);
