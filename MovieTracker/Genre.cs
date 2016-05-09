@@ -12,12 +12,18 @@ namespace MovieTracker
     using System;
     using System.Collections.Generic;
     
-    public partial class WatchedMovies
+    public partial class Genre
     {
-        public int Id { get; set; }
-        public int MovieId { get; set; }
-        public int Deleted { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Genre()
+        {
+            this.Movies = new HashSet<Movie>();
+        }
     
-        public virtual Movie Movie { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movie> Movies { get; set; }
     }
 }

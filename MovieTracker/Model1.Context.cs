@@ -25,8 +25,7 @@ namespace MovieTracker
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<WatchedMovies> WatchedMovies { get; set; }
-        public virtual DbSet<Watchlist> Watchlists { get; set; }
     }
 }

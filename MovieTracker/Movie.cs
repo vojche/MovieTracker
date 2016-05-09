@@ -17,26 +17,23 @@ namespace MovieTracker
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie()
         {
-            this.WatchedMovies = new ObservableListSource<WatchedMovies>();
-            this.Watchlists = new ObservableListSource<Watchlist>();
+            this.Genres = new HashSet<Genre>();
         }
     
         public int Id { get; set; }
         public string ImdbID { get; set; }
         public string Title { get; set; }
-        public int Year { get; set; }
-        public System.DateTime Runtime { get; set; }
+        public System.DateTime Year { get; set; }
+        public int Runtime { get; set; }
         public string Director { get; set; }
         public string Actors { get; set; }
         public string Plot { get; set; }
         public string Awards { get; set; }
         public string Image { get; set; }
         public double Rating { get; set; }
-        public string Genres { get; set; }
+        public Nullable<int> Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableListSource<WatchedMovies> WatchedMovies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableListSource<Watchlist> Watchlists { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
     }
 }
