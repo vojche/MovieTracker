@@ -15,10 +15,11 @@ namespace MovieTracker
         public string actors { get; set; }
         public string plot { get; set; }
         public string language { get; set; }
-        public float imdbRating { get; set; }
+        public string awards { get; set; }
+        public double imdbRating { get; set; }
 
 
-        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, string actors, string plot, string language, float imdbRating) : base(title, year, imdbID, poster)
+        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, string actors, string plot, string language, string awards, double imdbRating) : base(title, year, imdbID, poster)
         {
             this.release = release;
             this.runtime = runtime;
@@ -27,6 +28,7 @@ namespace MovieTracker
             this.actors = actors;
             this.plot = plot;
             this.language = language;
+            this.awards = awards;
             this.imdbRating = imdbRating;
 
         }

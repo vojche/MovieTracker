@@ -25,8 +25,9 @@
           <Property Name="Actors" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Plot" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Awards" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Image" Type="nvarchar(max)" />
-          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Rating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Type" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -107,8 +108,9 @@ warning 6002: The table/view 'Movie.dbo.MovieGenres' does not have a primary key
           <Property Name="Actors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Plot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Awards" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Rating" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
           <Property Name="Type" Type="Int32" />
           <NavigationProperty Name="Genres" Relationship="Self.MovieGenres" FromRole="Movie" ToRole="Genre" />
         </EntityType>
@@ -150,6 +152,7 @@ warning 6002: The table/view 'Movie.dbo.MovieGenres' does not have a primary key
                 <ScalarProperty Name="Actors" ColumnName="Actors" />
                 <ScalarProperty Name="Plot" ColumnName="Plot" />
                 <ScalarProperty Name="Awards" ColumnName="Awards" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

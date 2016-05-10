@@ -29,8 +29,9 @@ namespace MovieTracker
         public string Actors { get; set; }
         public string Plot { get; set; }
         public string Awards { get; set; }
+        public string Language { get; set; }
         public string Image { get; set; }
-        public double Rating { get; set; }
+        public decimal Rating { get; set; }
         public Nullable<int> Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

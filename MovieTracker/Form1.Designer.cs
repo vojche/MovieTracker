@@ -55,6 +55,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pageNumber = new System.Windows.Forms.TextBox();
+            this.prev = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.details = new System.Windows.Forms.Button();
             this.addW = new System.Windows.Forms.Button();
@@ -66,20 +71,15 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.next = new System.Windows.Forms.Button();
-            this.prev = new System.Windows.Forms.Button();
-            this.pageNumber = new System.Windows.Forms.TextBox();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage3
@@ -87,7 +87,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(976, 451);
+            this.tabPage3.Size = new System.Drawing.Size(976, 419);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Watched movies";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -327,9 +327,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 91);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 13);
+            this.label5.Size = new System.Drawing.Size(136, 13);
             this.label5.TabIndex = 29;
-            this.label5.Text = "Number of movies in the watch list";
+            this.label5.Text = "Number of movies to watch";
             // 
             // textBox5
             // 
@@ -347,6 +347,58 @@
             this.label4.Size = new System.Drawing.Size(136, 13);
             this.label4.TabIndex = 27;
             this.label4.Text = "Number of movies watched";
+            // 
+            // pageNumber
+            // 
+            this.pageNumber.Location = new System.Drawing.Point(153, 149);
+            this.pageNumber.Name = "pageNumber";
+            this.pageNumber.ReadOnly = true;
+            this.pageNumber.Size = new System.Drawing.Size(43, 20);
+            this.pageNumber.TabIndex = 38;
+            this.pageNumber.Text = "1";
+            this.pageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // prev
+            // 
+            this.prev.Enabled = false;
+            this.prev.Location = new System.Drawing.Point(101, 147);
+            this.prev.Name = "prev";
+            this.prev.Size = new System.Drawing.Size(49, 23);
+            this.prev.TabIndex = 28;
+            this.prev.Text = "Prev";
+            this.prev.UseVisualStyleBackColor = true;
+            this.prev.Click += new System.EventHandler(this.prev_Click);
+            // 
+            // next
+            // 
+            this.next.Enabled = false;
+            this.next.Location = new System.Drawing.Point(202, 147);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(49, 23);
+            this.next.TabIndex = 27;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(13, 152);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(82, 17);
+            this.checkBox1.TabIndex = 26;
+            this.checkBox1.Text = "more results";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(13, 18);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(238, 81);
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
             // 
             // groupBox1
             // 
@@ -390,8 +442,9 @@
             this.addWL.Name = "addWL";
             this.addWL.Size = new System.Drawing.Size(105, 23);
             this.addWL.TabIndex = 25;
-            this.addWL.Text = "Add to watch list";
+            this.addWL.Text = "Add to watchlist";
             this.addWL.UseVisualStyleBackColor = true;
+            this.addWL.Click += new System.EventHandler(this.addWL_Click);
             // 
             // pictureBox1
             // 
@@ -455,62 +508,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(976, 451);
+            this.tabPage1.Size = new System.Drawing.Size(976, 419);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Watch list";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(13, 18);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(238, 81);
-            this.pictureBox2.TabIndex = 25;
-            this.pictureBox2.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(13, 152);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(82, 17);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "more results";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // next
-            // 
-            this.next.Enabled = false;
-            this.next.Location = new System.Drawing.Point(202, 147);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(49, 23);
-            this.next.TabIndex = 27;
-            this.next.Text = "Next";
-            this.next.UseVisualStyleBackColor = true;
-            this.next.Click += new System.EventHandler(this.next_Click);
-            // 
-            // prev
-            // 
-            this.prev.Enabled = false;
-            this.prev.Location = new System.Drawing.Point(101, 147);
-            this.prev.Name = "prev";
-            this.prev.Size = new System.Drawing.Size(49, 23);
-            this.prev.TabIndex = 28;
-            this.prev.Text = "Prev";
-            this.prev.UseVisualStyleBackColor = true;
-            this.prev.Click += new System.EventHandler(this.prev_Click);
-            // 
-            // pageNumber
-            // 
-            this.pageNumber.Location = new System.Drawing.Point(153, 149);
-            this.pageNumber.Name = "pageNumber";
-            this.pageNumber.ReadOnly = true;
-            this.pageNumber.Size = new System.Drawing.Size(43, 20);
-            this.pageNumber.TabIndex = 38;
-            this.pageNumber.Text = "1";
-            this.pageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -528,11 +529,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
