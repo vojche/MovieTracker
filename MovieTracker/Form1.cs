@@ -30,6 +30,7 @@ namespace MovieTracker
         public Form1()
         {
             InitializeComponent();
+            MaximizeBox = false;
             searchList = new List<SearchMovie>();
             da = new DAMovie();
             textBox5.Text =  da.CountWatchedMovies().ToString();
