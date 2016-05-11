@@ -56,34 +56,37 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pageNumber = new System.Windows.Forms.TextBox();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.details = new System.Windows.Forms.Button();
-            this.addW = new System.Windows.Forms.Button();
-            this.addWL = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.details = new System.Windows.Forms.Button();
+            this.addWL = new System.Windows.Forms.Button();
+            this.addW = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.internetLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +95,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(976, 419);
+            this.tabPage3.Size = new System.Drawing.Size(788, 411);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Watched movies";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -115,6 +118,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.progressBar1);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.label13);
             this.splitContainer1.Panel1.Controls.Add(this.progressBar6);
             this.splitContainer1.Panel1.Controls.Add(this.textBox13);
@@ -159,7 +165,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(11, 160);
+            this.label13.Location = new System.Drawing.Point(9, 166);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(122, 13);
             this.label13.TabIndex = 51;
@@ -167,7 +173,7 @@
             // 
             // progressBar6
             // 
-            this.progressBar6.Location = new System.Drawing.Point(158, 355);
+            this.progressBar6.Location = new System.Drawing.Point(156, 347);
             this.progressBar6.Name = "progressBar6";
             this.progressBar6.Size = new System.Drawing.Size(86, 20);
             this.progressBar6.TabIndex = 50;
@@ -175,7 +181,7 @@
             // textBox13
             // 
             this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(109, 355);
+            this.textBox13.Location = new System.Drawing.Point(107, 347);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(43, 20);
@@ -185,7 +191,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 358);
+            this.label12.Location = new System.Drawing.Point(9, 350);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(92, 13);
             this.label12.TabIndex = 48;
@@ -193,7 +199,7 @@
             // 
             // progressBar5
             // 
-            this.progressBar5.Location = new System.Drawing.Point(158, 321);
+            this.progressBar5.Location = new System.Drawing.Point(156, 321);
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(86, 20);
             this.progressBar5.TabIndex = 47;
@@ -201,7 +207,7 @@
             // textBox12
             // 
             this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(109, 321);
+            this.textBox12.Location = new System.Drawing.Point(107, 321);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(43, 20);
@@ -211,7 +217,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 324);
+            this.label11.Location = new System.Drawing.Point(9, 324);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(92, 13);
             this.label11.TabIndex = 45;
@@ -219,7 +225,7 @@
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(158, 289);
+            this.progressBar4.Location = new System.Drawing.Point(156, 295);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(86, 20);
             this.progressBar4.TabIndex = 44;
@@ -227,7 +233,7 @@
             // textBox11
             // 
             this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(109, 289);
+            this.textBox11.Location = new System.Drawing.Point(107, 295);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(43, 20);
@@ -237,7 +243,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 292);
+            this.label10.Location = new System.Drawing.Point(9, 298);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 13);
             this.label10.TabIndex = 42;
@@ -245,7 +251,7 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(158, 255);
+            this.progressBar3.Location = new System.Drawing.Point(156, 269);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(86, 20);
             this.progressBar3.TabIndex = 41;
@@ -253,7 +259,7 @@
             // textBox10
             // 
             this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(109, 255);
+            this.textBox10.Location = new System.Drawing.Point(107, 269);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(43, 20);
@@ -263,7 +269,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 258);
+            this.label9.Location = new System.Drawing.Point(9, 272);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 13);
             this.label9.TabIndex = 39;
@@ -271,7 +277,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(158, 222);
+            this.progressBar2.Location = new System.Drawing.Point(156, 243);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(86, 20);
             this.progressBar2.TabIndex = 38;
@@ -279,7 +285,7 @@
             // textBox9
             // 
             this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(109, 222);
+            this.textBox9.Location = new System.Drawing.Point(107, 243);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(43, 20);
@@ -289,7 +295,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 225);
+            this.label8.Location = new System.Drawing.Point(9, 246);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 13);
             this.label8.TabIndex = 36;
@@ -298,7 +304,7 @@
             // textBox8
             // 
             this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(93, 187);
+            this.textBox8.Location = new System.Drawing.Point(91, 193);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(59, 20);
@@ -308,7 +314,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 190);
+            this.label7.Location = new System.Drawing.Point(9, 196);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(76, 13);
             this.label7.TabIndex = 33;
@@ -317,17 +323,17 @@
             // textBox7
             // 
             this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(162, 124);
+            this.textBox7.Location = new System.Drawing.Point(55, 129);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(82, 20);
+            this.textBox7.Size = new System.Drawing.Size(140, 20);
             this.textBox7.TabIndex = 32;
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 131);
+            this.label6.Location = new System.Drawing.Point(54, 111);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 13);
             this.label6.TabIndex = 31;
@@ -336,17 +342,17 @@
             // textBox6
             // 
             this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(162, 88);
+            this.textBox6.Location = new System.Drawing.Point(165, 70);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(82, 20);
+            this.textBox6.Size = new System.Drawing.Size(77, 20);
             this.textBox6.TabIndex = 30;
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 91);
+            this.label5.Location = new System.Drawing.Point(14, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 13);
             this.label5.TabIndex = 29;
@@ -355,43 +361,21 @@
             // textBox5
             // 
             this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(162, 48);
+            this.textBox5.Location = new System.Drawing.Point(165, 30);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(82, 20);
+            this.textBox5.Size = new System.Drawing.Size(77, 20);
             this.textBox5.TabIndex = 28;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 51);
+            this.label4.Location = new System.Drawing.Point(14, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 13);
             this.label4.TabIndex = 27;
             this.label4.Text = "Number of movies watched";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(796, 437);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(976, 419);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Watch list";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // pageNumber
             // 
@@ -462,38 +446,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Movie";
             // 
-            // details
-            // 
-            this.details.Enabled = false;
-            this.details.Location = new System.Drawing.Point(5, 337);
-            this.details.Name = "details";
-            this.details.Size = new System.Drawing.Size(239, 23);
-            this.details.TabIndex = 27;
-            this.details.Text = "Details";
-            this.details.UseVisualStyleBackColor = true;
-            this.details.Click += new System.EventHandler(this.details_Click);
-            // 
-            // addW
-            // 
-            this.addW.Enabled = false;
-            this.addW.Location = new System.Drawing.Point(115, 366);
-            this.addW.Name = "addW";
-            this.addW.Size = new System.Drawing.Size(128, 23);
-            this.addW.TabIndex = 26;
-            this.addW.Text = "Add to watched movies";
-            this.addW.UseVisualStyleBackColor = true;
-            // 
-            // addWL
-            // 
-            this.addWL.Enabled = false;
-            this.addWL.Location = new System.Drawing.Point(5, 366);
-            this.addWL.Name = "addWL";
-            this.addWL.Size = new System.Drawing.Size(105, 23);
-            this.addWL.TabIndex = 25;
-            this.addWL.Text = "Add to watchlist";
-            this.addWL.UseVisualStyleBackColor = true;
-            this.addWL.Click += new System.EventHandler(this.addWL_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(7, 54);
@@ -512,6 +464,38 @@
             this.textBox1.Size = new System.Drawing.Size(238, 20);
             this.textBox1.TabIndex = 15;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // details
+            // 
+            this.details.Enabled = false;
+            this.details.Location = new System.Drawing.Point(5, 337);
+            this.details.Name = "details";
+            this.details.Size = new System.Drawing.Size(239, 23);
+            this.details.TabIndex = 27;
+            this.details.Text = "Details";
+            this.details.UseVisualStyleBackColor = true;
+            this.details.Click += new System.EventHandler(this.details_Click);
+            // 
+            // addWL
+            // 
+            this.addWL.Enabled = false;
+            this.addWL.Location = new System.Drawing.Point(5, 366);
+            this.addWL.Name = "addWL";
+            this.addWL.Size = new System.Drawing.Size(105, 23);
+            this.addWL.TabIndex = 25;
+            this.addWL.Text = "Add to watchlist";
+            this.addWL.UseVisualStyleBackColor = true;
+            this.addWL.Click += new System.EventHandler(this.addWL_Click);
+            // 
+            // addW
+            // 
+            this.addW.Enabled = false;
+            this.addW.Location = new System.Drawing.Point(115, 366);
+            this.addW.Name = "addW";
+            this.addW.Size = new System.Drawing.Size(128, 23);
+            this.addW.TabIndex = 26;
+            this.addW.Text = "Add to watched movies";
+            this.addW.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -541,6 +525,28 @@
             this.listBox1.TabIndex = 39;
             this.listBox1.Click += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(796, 437);
+            this.tabControl1.TabIndex = 0;
+            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(788, 411);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Watch list";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -559,8 +565,34 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 5000;
+            this.timer1.Interval = 2500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(156, 217);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(86, 20);
+            this.progressBar1.TabIndex = 54;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(107, 217);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(43, 20);
+            this.textBox2.TabIndex = 53;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 220);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Movies bellow 5.5";
             // 
             // Form1
             // 
@@ -579,11 +611,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -639,6 +671,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel internetLabel;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

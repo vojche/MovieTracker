@@ -30,6 +30,7 @@ namespace MovieTracker
         private bool internet { get; set; }
         private bool _addWL { get; set; }
         private bool _addW { get; set; }
+        private bool _checkBox1Enabled = false;
         DAMovie da;            
 
         public Form1()
@@ -106,7 +107,8 @@ namespace MovieTracker
             {                
                 internetLabel.Text = "Internet connection: UP";
                 addW.Enabled = _addW;
-                addWL.Enabled = _addWL;                
+                addWL.Enabled = _addWL;
+                checkBox1.Enabled = _checkBox1Enabled;            
             }
             else
             {
@@ -156,12 +158,12 @@ namespace MovieTracker
                 if (moreResults)
                     next.Enabled = nextB;
 
-                checkBox1.Enabled = true;
+                _checkBox1Enabled = checkBox1.Enabled = true;
             }
             else
             {
                 MessageBox.Show("Movie \"" + textBox4.Text + "\" doesn`t exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                checkBox1.Enabled = false;
+                _checkBox1Enabled = checkBox1.Enabled = false;
             }
         }
 
@@ -250,7 +252,7 @@ namespace MovieTracker
             {
                 imdbRating = (float)o["imdbRating"];
             }
-            modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Language"].ToString(), imdbRating);
+            modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Awards"].ToString(), imdbRating);
 
         }
 
@@ -340,6 +342,10 @@ namespace MovieTracker
             {
                 moreResults = true;
                 next.Enabled = nextB;
+                int page = 0;
+                int.TryParse(pageNumber.Text, out page);
+                if (page > 1)
+                    prev.Enabled = true;
             }
             
         }
@@ -385,8 +391,8 @@ namespace MovieTracker
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
-        {            
-            moreResults = checkBox1.Checked = checkBox1.Enabled = false;
+        {
+            _checkBox1Enabled = moreResults = checkBox1.Checked = checkBox1.Enabled = false;
         }
 
         private void addWL_Click(object sender, EventArgs e)

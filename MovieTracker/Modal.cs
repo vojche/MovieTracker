@@ -35,8 +35,19 @@ namespace MovieTracker
             textBox7.Text = movie.language;
             textBox8.Text = movie.Rating();
             textBox9.Text = movie.plot;
+            textBox10.Text = movie.awards;
             addWL.Enabled = watchlistButton;
             addW.Enabled = watchedButton;
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

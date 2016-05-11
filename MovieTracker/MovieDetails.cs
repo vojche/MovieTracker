@@ -37,7 +37,7 @@ namespace MovieTracker
         {
             if (imdbRating == 0)
                 return "N/A";
-            else return imdbRating.ToString();
+            else return string.Format("{0:0.0}", imdbRating); //.ToString();
         }
 
 

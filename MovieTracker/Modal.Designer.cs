@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,6 +58,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -83,6 +87,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Movie details";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(308, 104);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(270, 37);
+            this.textBox10.TabIndex = 42;
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(264, 107);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 13);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "Awards";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // textBox2
             // 
@@ -133,18 +157,18 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(9, 344);
+            this.textBox9.Location = new System.Drawing.Point(9, 364);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox9.Size = new System.Drawing.Size(569, 107);
+            this.textBox9.Size = new System.Drawing.Size(569, 87);
             this.textBox9.TabIndex = 35;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 328);
+            this.label9.Location = new System.Drawing.Point(6, 348);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(28, 13);
             this.label9.TabIndex = 34;
@@ -152,7 +176,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(506, 73);
+            this.textBox8.Location = new System.Drawing.Point(506, 64);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(72, 20);
@@ -162,7 +186,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(464, 76);
+            this.label8.Location = new System.Drawing.Point(464, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 31;
@@ -170,7 +194,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(325, 296);
+            this.textBox7.Location = new System.Drawing.Point(325, 324);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(253, 20);
@@ -179,7 +203,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(264, 299);
+            this.label7.Location = new System.Drawing.Point(264, 327);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 29;
@@ -187,7 +211,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(267, 237);
+            this.textBox6.Location = new System.Drawing.Point(267, 265);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -197,7 +221,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(264, 221);
+            this.label6.Location = new System.Drawing.Point(264, 249);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 27;
@@ -205,7 +229,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(308, 188);
+            this.textBox5.Location = new System.Drawing.Point(308, 222);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(270, 20);
@@ -214,7 +238,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(264, 191);
+            this.label5.Location = new System.Drawing.Point(264, 225);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 25;
@@ -222,17 +246,17 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(267, 123);
+            this.textBox4.Location = new System.Drawing.Point(267, 162);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(311, 47);
+            this.textBox4.Size = new System.Drawing.Size(311, 41);
             this.textBox4.TabIndex = 24;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(264, 107);
+            this.label4.Location = new System.Drawing.Point(264, 146);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 23;
@@ -240,7 +264,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(340, 73);
+            this.textBox3.Location = new System.Drawing.Point(340, 64);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(113, 20);
@@ -250,7 +274,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(264, 76);
+            this.label3.Location = new System.Drawing.Point(264, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 21;
@@ -269,7 +293,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(9, 64);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(239, 252);
+            this.pictureBox1.Size = new System.Drawing.Size(239, 281);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -313,5 +337,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label10;
     }
 }
