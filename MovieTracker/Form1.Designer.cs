@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -55,6 +56,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pageNumber = new System.Windows.Forms.TextBox();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
@@ -69,17 +72,19 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.internetLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage3
@@ -97,7 +102,7 @@
             this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(976, 419);
+            this.tabPage2.Size = new System.Drawing.Size(788, 411);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Home";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -146,8 +151,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox4);
             this.splitContainer1.Panel2.Controls.Add(this.listBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(976, 419);
-            this.splitContainer1.SplitterDistance = 253;
+            this.splitContainer1.Size = new System.Drawing.Size(788, 411);
+            this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 0;
             // 
             // label13
@@ -162,23 +167,25 @@
             // 
             // progressBar6
             // 
-            this.progressBar6.Location = new System.Drawing.Point(158, 326);
+            this.progressBar6.Location = new System.Drawing.Point(158, 355);
             this.progressBar6.Name = "progressBar6";
             this.progressBar6.Size = new System.Drawing.Size(86, 20);
             this.progressBar6.TabIndex = 50;
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(109, 326);
+            this.textBox13.Enabled = false;
+            this.textBox13.Location = new System.Drawing.Point(109, 355);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(43, 20);
             this.textBox13.TabIndex = 49;
+            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 329);
+            this.label12.Location = new System.Drawing.Point(11, 358);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(92, 13);
             this.label12.TabIndex = 48;
@@ -186,23 +193,25 @@
             // 
             // progressBar5
             // 
-            this.progressBar5.Location = new System.Drawing.Point(158, 300);
+            this.progressBar5.Location = new System.Drawing.Point(158, 321);
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(86, 20);
             this.progressBar5.TabIndex = 47;
             // 
             // textBox12
             // 
-            this.textBox12.Location = new System.Drawing.Point(109, 300);
+            this.textBox12.Enabled = false;
+            this.textBox12.Location = new System.Drawing.Point(109, 321);
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(43, 20);
             this.textBox12.TabIndex = 46;
+            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 303);
+            this.label11.Location = new System.Drawing.Point(11, 324);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(92, 13);
             this.label11.TabIndex = 45;
@@ -210,23 +219,25 @@
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(158, 274);
+            this.progressBar4.Location = new System.Drawing.Point(158, 289);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(86, 20);
             this.progressBar4.TabIndex = 44;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(109, 274);
+            this.textBox11.Enabled = false;
+            this.textBox11.Location = new System.Drawing.Point(109, 289);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(43, 20);
             this.textBox11.TabIndex = 43;
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 277);
+            this.label10.Location = new System.Drawing.Point(11, 292);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 13);
             this.label10.TabIndex = 42;
@@ -234,23 +245,25 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(158, 248);
+            this.progressBar3.Location = new System.Drawing.Point(158, 255);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(86, 20);
             this.progressBar3.TabIndex = 41;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(109, 248);
+            this.textBox10.Enabled = false;
+            this.textBox10.Location = new System.Drawing.Point(109, 255);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(43, 20);
             this.textBox10.TabIndex = 40;
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 251);
+            this.label9.Location = new System.Drawing.Point(11, 258);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(92, 13);
             this.label9.TabIndex = 39;
@@ -265,11 +278,13 @@
             // 
             // textBox9
             // 
+            this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(109, 222);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(43, 20);
             this.textBox9.TabIndex = 37;
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -282,11 +297,13 @@
             // 
             // textBox8
             // 
+            this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(93, 187);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(59, 20);
             this.textBox8.TabIndex = 34;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -299,11 +316,13 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(158, 124);
+            this.textBox7.Enabled = false;
+            this.textBox7.Location = new System.Drawing.Point(162, 124);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(86, 20);
+            this.textBox7.Size = new System.Drawing.Size(82, 20);
             this.textBox7.TabIndex = 32;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
@@ -316,11 +335,13 @@
             // 
             // textBox6
             // 
+            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(162, 88);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(82, 20);
             this.textBox6.TabIndex = 30;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -333,11 +354,13 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(153, 48);
+            this.textBox5.Enabled = false;
+            this.textBox5.Location = new System.Drawing.Point(162, 48);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(91, 20);
+            this.textBox5.Size = new System.Drawing.Size(82, 20);
             this.textBox5.TabIndex = 28;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -348,35 +371,59 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Number of movies watched";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(796, 437);
+            this.tabControl1.TabIndex = 0;
+            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(976, 419);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Watch list";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // pageNumber
             // 
-            this.pageNumber.Location = new System.Drawing.Point(153, 149);
+            this.pageNumber.Enabled = false;
+            this.pageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pageNumber.Location = new System.Drawing.Point(120, 183);
             this.pageNumber.Name = "pageNumber";
             this.pageNumber.ReadOnly = true;
             this.pageNumber.Size = new System.Drawing.Size(43, 20);
-            this.pageNumber.TabIndex = 38;
+            this.pageNumber.TabIndex = 47;
             this.pageNumber.Text = "1";
             this.pageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // prev
             // 
             this.prev.Enabled = false;
-            this.prev.Location = new System.Drawing.Point(101, 147);
+            this.prev.Location = new System.Drawing.Point(32, 180);
             this.prev.Name = "prev";
-            this.prev.Size = new System.Drawing.Size(49, 23);
-            this.prev.TabIndex = 28;
-            this.prev.Text = "Prev";
+            this.prev.Size = new System.Drawing.Size(82, 23);
+            this.prev.TabIndex = 46;
+            this.prev.Text = "Prev. page";
             this.prev.UseVisualStyleBackColor = true;
             this.prev.Click += new System.EventHandler(this.prev_Click);
             // 
             // next
             // 
             this.next.Enabled = false;
-            this.next.Location = new System.Drawing.Point(202, 147);
+            this.next.Location = new System.Drawing.Point(169, 180);
             this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(49, 23);
-            this.next.TabIndex = 27;
-            this.next.Text = "Next";
+            this.next.Size = new System.Drawing.Size(82, 23);
+            this.next.TabIndex = 45;
+            this.next.Text = "Next page";
             this.next.UseVisualStyleBackColor = true;
             this.next.Click += new System.EventHandler(this.next_Click);
             // 
@@ -384,33 +431,34 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(13, 152);
+            this.checkBox1.Location = new System.Drawing.Point(23, 147);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(82, 17);
-            this.checkBox1.TabIndex = 26;
+            this.checkBox1.TabIndex = 44;
             this.checkBox1.Text = "more results";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(13, 18);
+            this.pictureBox2.Location = new System.Drawing.Point(23, 13);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(238, 81);
-            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 43;
             this.pictureBox2.TabStop = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.details);
-            this.groupBox1.Controls.Add(this.addW);
-            this.groupBox1.Controls.Add(this.addWL);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(257, 16);
+            this.groupBox1.Controls.Add(this.details);
+            this.groupBox1.Controls.Add(this.addWL);
+            this.groupBox1.Controls.Add(this.addW);
+            this.groupBox1.Location = new System.Drawing.Point(267, 11);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 396);
-            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Movie";
             // 
@@ -457,6 +505,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -466,58 +515,59 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(176, 115);
+            this.button1.Location = new System.Drawing.Point(186, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 23;
+            this.button1.TabIndex = 41;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(13, 117);
+            this.textBox4.Location = new System.Drawing.Point(23, 112);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(157, 20);
-            this.textBox4.TabIndex = 22;
+            this.textBox4.TabIndex = 40;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 187);
+            this.listBox1.HorizontalScrollbar = true;
+            this.listBox1.Location = new System.Drawing.Point(23, 211);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(238, 160);
-            this.listBox1.TabIndex = 21;
+            this.listBox1.TabIndex = 39;
             this.listBox1.Click += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // tabControl1
+            // statusStrip1
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(984, 445);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.internetLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 451);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(817, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // tabPage1
+            // internetLabel
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(976, 419);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Watch list";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.internetLabel.Name = "internetLabel";
+            this.internetLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 457);
+            this.ClientSize = new System.Drawing.Size(817, 473);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Movie Tracker";
@@ -529,12 +579,15 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -569,20 +622,23 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button details;
-        private System.Windows.Forms.Button addW;
-        private System.Windows.Forms.Button addWL;
         private System.Windows.Forms.TextBox pageNumber;
         private System.Windows.Forms.Button prev;
         private System.Windows.Forms.Button next;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button details;
+        private System.Windows.Forms.Button addW;
+        private System.Windows.Forms.Button addWL;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel internetLabel;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

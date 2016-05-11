@@ -15,13 +15,17 @@ namespace MovieTracker
         public MovieDetails movie;
         public bool watchlistButton { get; set; }
         public bool watchedButton { get; set; }
-        public Modal(MovieDetails movie, bool watchlistButton, bool watchedButton)
+        public bool internet { get; set; }
+        public Modal(MovieDetails movie, bool watchlistButton, bool watchedButton, bool internet)
         {
             InitializeComponent();
+            MaximizeBox = false;            
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.movie = movie;
             this.watchlistButton = watchlistButton;
             this.watchedButton = watchedButton;
-            movie.postaviPoster(pictureBox1);
+            movie.postaviPoster(pictureBox1, internet);
             textBox1.Text = movie.title;
             textBox2.Text = movie.Runtime();
             textBox3.Text = movie.Release();
@@ -31,7 +35,6 @@ namespace MovieTracker
             textBox7.Text = movie.language;
             textBox8.Text = movie.Rating();
             textBox9.Text = movie.plot;
-
             addWL.Enabled = watchlistButton;
             addW.Enabled = watchedButton;
 

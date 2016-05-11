@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using MovieTracker.DAL;
 using System.Net;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace MovieTracker
 {
@@ -22,20 +23,106 @@ namespace MovieTracker
         public List<SearchMovie> searchList;
         public SearchMovie curr;
         public MovieDetails modalMovie;
-        public static string x { get; set; }
+        //public static string x { get; set; }
         public bool moreResults = false;
         public bool nextB { get; set; }
         public bool prevB { get; set; }
-        DAMovie da;
+        private bool internet { get; set; }
+        private bool _addWL { get; set; }
+        private bool _addW { get; set; }
+        DAMovie da;            
+
         public Form1()
         {
             InitializeComponent();
+            checkInternetConnection();
             MaximizeBox = false;
+            pictureBox2.Image = Bitmap.FromFile(@"..\..\Pictures\logo.png");
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             searchList = new List<SearchMovie>();
             da = new DAMovie();
             textBox5.Text =  da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            /*_addW = addW.Enabled;
+            _addWL = addWL.Enabled;*/
+            checkInternetConnection();
+        }
+
+        [DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int description, int reservedValue);
+
+        public static bool IsInternetAvailable()
+        {
+            int description;
+            return InternetGetConnectedState(out description, 0);
+        }
+
+        private void additionButtons()
+        {
+            using (var ctx = new MovieContext())
+            {
+                int IsAdded = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Count();
+
+                if (IsAdded == 1)
+                {
+                    var type = from movie in ctx.Movies
+                               where movie.ImdbID == curr.imdbID
+                               select movie.Type;
+
+                    if (type.First() == null)
+                    {
+                        _addW = addW.Enabled = true;
+                        _addWL = addWL.Enabled = true;
+                    }
+                    else if (type.First() == 1)
+                    {
+                        _addW = addW.Enabled = true;
+                        _addWL = addWL.Enabled = false;
+                    }
+                    else if (type.First() == 2)
+                    {
+                        _addW = addW.Enabled = false;
+                        _addWL = addWL.Enabled = true;
+                    }
+                }
+                else if (IsAdded == 0)
+                {
+                    _addW = addW.Enabled = true;
+                    _addWL = addWL.Enabled = true;
+                }
+            }
+        }
+
+        private void checkInternetConnection()
+        {
+            internet = IsInternetAvailable();
+           
+            if (internet)
+            {                
+                internetLabel.Text = "Internet connection: UP";
+                addW.Enabled = _addW;
+                addWL.Enabled = _addWL;                
+            }
+            else
+            {
+                internetLabel.Text = "Internet connection: DOWN";
+                checkBox1.Checked = checkBox1.Enabled = addWL.Enabled = addW.Enabled = internet;
+            }
+            button1.Enabled = textBox4.Enabled =  listBox1.Enabled = internet;
+
+            if (textBox1.Text.Length != 0)
+                details.Enabled = internet;
+
+            /*if (textBox4.Text.Length != 0)
+                checkBox1.Enabled = internet;*/
+
+            textBox4.ReadOnly =  !internet;
+            
         }
 
         private void povleciSearchPodatoci(string ime, int page)
@@ -189,10 +276,11 @@ namespace MovieTracker
             {
                 curr = listBox1.SelectedItem as SearchMovie;
                 textBox1.Text = curr.title;
-                curr.postaviPoster(pictureBox1);
+                curr.postaviPoster(pictureBox1, internet);
                 details.Enabled = true;
 
-                using (var ctx = new MovieContext())
+                additionButtons();
+                /*using (var ctx = new MovieContext())
                 {
                     int IsAdded = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Count();
 
@@ -223,29 +311,10 @@ namespace MovieTracker
                         addW.Enabled = true;
                         addWL.Enabled = true;
                     }
-                }
+                }*/
             }
 
-            /*if (!film.poster.Equals("N/A"))
-            {
-                var request = WebRequest.Create(film.poster);
-
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                {
-                    pictureBox1.Image = Bitmap.FromStream(stream);
-                }
-            }
-            else
-            {
-                var request = WebRequest.Create("https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Dialog-error-round.svg/2000px-Dialog-error-round.svg.png");
-
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                {
-                    pictureBox1.Image = Bitmap.FromStream(stream);
-                }
-            }*/
+            
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -256,7 +325,7 @@ namespace MovieTracker
         private void details_Click(object sender, EventArgs e)
         {
             povleciDetalniPodatoci(curr.imdbID);
-            Modal modal = new MovieTracker.Modal(modalMovie, true, false);
+            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
             modal.ShowDialog();
         }
                 
@@ -339,7 +408,9 @@ namespace MovieTracker
                 ctx.Movies.Add(movie);
                 ctx.SaveChanges();
             }
-            addWL.Enabled = false;
+            _addWL = addWL.Enabled = false;
+            textBox6.Text = da.CountMoviesWatchlist().ToString();
         }
+               
     }
 }

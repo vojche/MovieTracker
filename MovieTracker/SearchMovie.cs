@@ -24,24 +24,32 @@ namespace MovieTracker
             this.poster = poster;
         }
 
-        public void postaviPoster(PictureBox pictureBox)
+        public void postaviPoster(PictureBox pictureBox, bool internet)
         {
-            string link;
-            if (!poster.Equals("N/A"))
+            //string link;
+            if (internet)
             {
-                link = poster;
+                if (!poster.Equals("N/A"))
+                {
+                    var request = WebRequest.Create(poster);
+                    using (var response = request.GetResponse())
+                    using (var stream = response.GetResponseStream())
+                    {
+                        pictureBox.Image = Bitmap.FromStream(stream);
+                    }
+                }
+                else
+                {
+                    pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
+                }
             }
             else
             {
-                link = "https://cdn4.iconfinder.com/data/icons/project-document-std-pack-4/512/trailer-512.png";
+                pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
             }
 
-            var request = WebRequest.Create(link);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                pictureBox.Image = Bitmap.FromStream(stream);
-            }
+
+
         }
 
         public override string ToString()
