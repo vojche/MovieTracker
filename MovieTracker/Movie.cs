@@ -89,7 +89,7 @@ namespace MovieTracker
         public string ReleaseMethod()
         {
            
-            if (Release.Value.Year != 1550)
+            if (Release.Value.Year != 1800)
                 return Release.Value.Month + "." + Release.Value.Day + "." + Release.Value.Year;
             else
             {

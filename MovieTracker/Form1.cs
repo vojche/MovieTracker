@@ -645,7 +645,6 @@ namespace MovieTracker
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             toWatchList.Items.Clear();
-
             foreach (Movie m in SortingFiltring(WatchlistMovies))
             {
                 toWatchList.Items.Add(m);
@@ -656,7 +655,6 @@ namespace MovieTracker
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             toWatchList.Items.Clear();
-
             foreach (Movie m in SortingFiltring(WatchlistMovies))
             {
                 toWatchList.Items.Add(m);
