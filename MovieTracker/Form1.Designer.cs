@@ -99,6 +99,7 @@
             this.watchedList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label37 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -144,7 +145,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label37 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -275,7 +275,6 @@
             // 
             // textBox15
             // 
-            this.textBox15.Enabled = false;
             this.textBox15.Location = new System.Drawing.Point(77, 30);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -361,7 +360,6 @@
             // 
             // textBox19
             // 
-            this.textBox19.Enabled = false;
             this.textBox19.Location = new System.Drawing.Point(267, 265);
             this.textBox19.Multiline = true;
             this.textBox19.Name = "textBox19";
@@ -380,7 +378,6 @@
             // 
             // textBox20
             // 
-            this.textBox20.Enabled = false;
             this.textBox20.Location = new System.Drawing.Point(308, 222);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
@@ -509,6 +506,30 @@
             // 
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Action",
+            "Adventure",
+            "Adult",
+            "Animation",
+            "Bigraphy",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film-Noir",
+            "History",
+            "Horror",
+            "Music",
+            "N/A",
+            "Musical",
+            "Mystery",
+            "Romance",
+            "Sci-Fi",
+            "Sport",
+            "Thriller",
+            "N/A"});
             this.comboBox1.Location = new System.Drawing.Point(84, 51);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -628,7 +649,6 @@
             // 
             // textBox25
             // 
-            this.textBox25.Enabled = false;
             this.textBox25.Location = new System.Drawing.Point(77, 30);
             this.textBox25.Name = "textBox25";
             this.textBox25.ReadOnly = true;
@@ -704,7 +724,6 @@
             // 
             // textBox29
             // 
-            this.textBox29.Enabled = false;
             this.textBox29.Location = new System.Drawing.Point(267, 265);
             this.textBox29.Multiline = true;
             this.textBox29.Name = "textBox29";
@@ -723,7 +742,6 @@
             // 
             // textBox30
             // 
-            this.textBox30.Enabled = false;
             this.textBox30.Location = new System.Drawing.Point(308, 222);
             this.textBox30.Name = "textBox30";
             this.textBox30.ReadOnly = true;
@@ -852,6 +870,30 @@
             // 
             this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Action",
+            "Adventure",
+            "Adult",
+            "Animation",
+            "Bigraphy",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film-Noir",
+            "History",
+            "Horror",
+            "Music",
+            "N/A",
+            "Musical",
+            "Mystery",
+            "Romance",
+            "Sci-Fi",
+            "Sport",
+            "Thriller",
+            "N/A"});
             this.comboBox2.Location = new System.Drawing.Point(84, 51);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
@@ -946,6 +988,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(875, 514);
             this.splitContainer1.SplitterDistance = 282;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(76, 25);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(128, 16);
+            this.label37.TabIndex = 55;
+            this.label37.Text = "General statistics";
             // 
             // progressBar1
             // 
@@ -1309,7 +1361,7 @@
             // next
             // 
             this.next.Enabled = false;
-            this.next.Location = new System.Drawing.Point(175, 78);
+            this.next.Location = new System.Drawing.Point(178, 73);
             this.next.Name = "next";
             this.next.Size = new System.Drawing.Size(82, 23);
             this.next.TabIndex = 45;
@@ -1321,7 +1373,7 @@
             // 
             this.pageNumber.Enabled = false;
             this.pageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pageNumber.Location = new System.Drawing.Point(126, 80);
+            this.pageNumber.Location = new System.Drawing.Point(129, 75);
             this.pageNumber.Name = "pageNumber";
             this.pageNumber.ReadOnly = true;
             this.pageNumber.Size = new System.Drawing.Size(43, 20);
@@ -1342,7 +1394,7 @@
             // prev
             // 
             this.prev.Enabled = false;
-            this.prev.Location = new System.Drawing.Point(38, 77);
+            this.prev.Location = new System.Drawing.Point(41, 72);
             this.prev.Name = "prev";
             this.prev.Size = new System.Drawing.Size(82, 23);
             this.prev.TabIndex = 46;
@@ -1366,9 +1418,9 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 110);
+            this.listBox1.Location = new System.Drawing.Point(6, 97);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(274, 147);
+            this.listBox1.Size = new System.Drawing.Size(274, 160);
             this.listBox1.TabIndex = 39;
             this.listBox1.Click += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -1384,16 +1436,6 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(76, 25);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(128, 16);
-            this.label37.TabIndex = 55;
-            this.label37.Text = "General statistics";
             // 
             // Form1
             // 

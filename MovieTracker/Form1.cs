@@ -329,7 +329,21 @@ namespace MovieTracker
         {
             povleciDetalniPodatoci(curr.imdbID);
             Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
-            modal.ShowDialog();
+                        
+            if(modal.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+            {
+                if(_addW==true && modal.watchedButton == false)
+                {
+                    _addW = addW.Enabled = _addWL = addWL.Enabled = false;
+                    GeneralStatistic();
+                    RatingStatistic();
+                }
+                else if(_addWL==true && modal.watchlistButton == false)
+                {
+                    _addWL = addWL.Enabled = false;
+                    textBox6.Text = da.CountMoviesWatchlist().ToString();
+                }
+            }           
         }
                 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -562,10 +576,19 @@ namespace MovieTracker
             
             if (tabControl1.SelectedIndex == 1)
             {
+                if (textBox25.Text.Length != 0)
+                {
+                    button5.Enabled = true;
+                }
+                else
+                {
+                    button5.Enabled = false;
+                }
+
                 WatchedMovies.Clear();
                 WatchedMovies = da.ReturnList(2);
                 watchedList.Items.Clear();
-                button5.Enabled = radioButton3.Checked = radioButton4.Checked = false;
+                radioButton3.Checked = radioButton4.Checked = false;
                 if (WatchedMovies.Count != 0)
                 {
                     foreach (Movie m in WatchedMovies)
@@ -578,10 +601,18 @@ namespace MovieTracker
             }
             else if (tabControl1.SelectedIndex == 2)
             {
+                if (textBox15.Text.Length != 0)
+                {
+                    button2.Enabled = button3.Enabled = true;
+                }
+                else
+                {
+                    button2.Enabled = button3.Enabled = false;
+                }
                 WatchlistMovies.Clear();
                 WatchlistMovies = da.ReturnList(1);
                 toWatchList.Items.Clear();
-                button2.Enabled = button3.Enabled = radioButton1.Checked = radioButton2.Checked = false;
+                radioButton1.Checked = radioButton2.Checked = false;
                 if (WatchlistMovies.Count != 0)
                 {
                     foreach (Movie m in WatchlistMovies)
