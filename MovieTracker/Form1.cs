@@ -375,7 +375,7 @@ namespace MovieTracker
                 {
                     ImdbID = modalMovie.imdbID,
                     Title = modalMovie.title,
-                    Year = modalMovie.release,
+                    Year = modalMovie.year,
                     Runtime = modalMovie.runtime,
                     Director = modalMovie.director,
                     Actors = modalMovie.actors,
@@ -425,7 +425,8 @@ namespace MovieTracker
                     {
                         ImdbID = modalMovie.imdbID,
                         Title = modalMovie.title,
-                        Year = modalMovie.release,
+                        Year = modalMovie.year,
+                        Release = modalMovie.release,
                         Runtime = modalMovie.runtime,
                         Director = modalMovie.director,
                         Actors = modalMovie.actors,

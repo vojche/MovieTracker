@@ -23,7 +23,7 @@ namespace MovieTracker
         public int Id { get; set; }
         public string ImdbID { get; set; }
         public string Title { get; set; }
-        public System.DateTime Year { get; set; }
+        public int Year { get; set; }
         public int Runtime { get; set; }
         public string Director { get; set; }
         public string Actors { get; set; }
@@ -33,6 +33,7 @@ namespace MovieTracker
         public string Image { get; set; }
         public decimal Rating { get; set; }
         public Nullable<int> Type { get; set; }
+        public Nullable<System.DateTime> Release { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Genre> Genres { get; set; }
