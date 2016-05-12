@@ -45,6 +45,8 @@ namespace MovieTracker
             textBox5.Text =  da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
+            movieDetailsButton.Enabled = false;
+            toWatchMovieDetailsBtn.Enabled = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

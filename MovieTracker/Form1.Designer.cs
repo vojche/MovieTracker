@@ -132,7 +132,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage3.Size = new System.Drawing.Size(1065, 509);
+            this.tabPage3.Size = new System.Drawing.Size(1052, 509);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Watched movies";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -601,6 +601,7 @@
             this.addW.TabIndex = 26;
             this.addW.Text = "Add to watched movies";
             this.addW.UseVisualStyleBackColor = true;
+            this.addW.Click += new System.EventHandler(this.addW_Click);
             // 
             // button1
             // 
@@ -656,7 +657,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1065, 509);
+            this.tabPage1.Size = new System.Drawing.Size(1052, 509);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Watch list";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -702,6 +703,7 @@
             this.watchedMoivesList.Name = "watchedMoivesList";
             this.watchedMoivesList.Size = new System.Drawing.Size(325, 452);
             this.watchedMoivesList.TabIndex = 0;
+            this.watchedMoivesList.SelectedIndexChanged += new System.EventHandler(this.watchedMoivesList_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -749,6 +751,7 @@
             this.movieDetailsButton.TabIndex = 3;
             this.movieDetailsButton.Text = "More details";
             this.movieDetailsButton.UseVisualStyleBackColor = true;
+            this.movieDetailsButton.Click += new System.EventHandler(this.movieDetailsButton_Click);
             // 
             // groupBox4
             // 
@@ -781,12 +784,13 @@
             // 
             // removeMovieButton
             // 
-            this.removeMovieButton.Location = new System.Drawing.Point(10, 445);
+            this.removeMovieButton.Location = new System.Drawing.Point(10, 455);
             this.removeMovieButton.Name = "removeMovieButton";
-            this.removeMovieButton.Size = new System.Drawing.Size(301, 40);
+            this.removeMovieButton.Size = new System.Drawing.Size(301, 36);
             this.removeMovieButton.TabIndex = 2;
             this.removeMovieButton.Text = "Remove movie";
             this.removeMovieButton.UseVisualStyleBackColor = true;
+            this.removeMovieButton.Click += new System.EventHandler(this.removeMovieButton_Click);
             // 
             // groupBox5
             // 
@@ -806,6 +810,7 @@
             this.toWatchList.Name = "toWatchList";
             this.toWatchList.Size = new System.Drawing.Size(328, 452);
             this.toWatchList.TabIndex = 0;
+            this.toWatchList.SelectedIndexChanged += new System.EventHandler(this.toWatchList_SelectedIndexChanged);
             // 
             // groupBox6
             // 
@@ -853,6 +858,7 @@
             this.toWatchMovieDetailsBtn.TabIndex = 3;
             this.toWatchMovieDetailsBtn.Text = "More details";
             this.toWatchMovieDetailsBtn.UseVisualStyleBackColor = true;
+            this.toWatchMovieDetailsBtn.Click += new System.EventHandler(this.toWatchMovieDetailsBtn_Click);
             // 
             // Statistics
             // 
@@ -892,6 +898,7 @@
             this.removeMovieBtn.TabIndex = 2;
             this.removeMovieBtn.Text = "Remove movie";
             this.removeMovieBtn.UseVisualStyleBackColor = true;
+            this.removeMovieBtn.Click += new System.EventHandler(this.removeMovieBtn_Click);
             // 
             // addToWatchedBtn
             // 
@@ -901,6 +908,7 @@
             this.addToWatchedBtn.TabIndex = 3;
             this.addToWatchedBtn.Text = "Add to watched movies";
             this.addToWatchedBtn.UseVisualStyleBackColor = true;
+            this.addToWatchedBtn.Click += new System.EventHandler(this.addToWatchedBtn_Click);
             // 
             // Form1
             // 
