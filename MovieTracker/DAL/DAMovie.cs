@@ -42,32 +42,34 @@ namespace MovieTracker.DAL
             return count;
         }
 
-        /*public List<MovieDetails> WatchlistMovies()
+        public double AverageRating()
         {
-            List<MovieDetails> wl;
             ctx = new MovieContext();
-            List<string> genre = new List<string>();
-            genre.Add("N/A");
-
-            wl = ctx.Movies.Where(m => m.Type == 1).Select(row => new MovieDetails {
-                title = row.Title,
-                year = row.Year,
-                imdbID = row.ImdbID,
-                poster = row.Image,
-                release = row.Release.GetValueOrDefault(),
-                runtime = row.Runtime,
-                genres = genre,
-                director = row.Director,
-                actors = row.Actors,
-                plot = row.Plot,
-                language = row.Language,
-                awards = row.Awards,
-               imdbRating = (double)row.Rating
-
-            }).ToList();
-
+            var rating = ctx.Movies.Where(m => m.Type == 2).Select(m => (double?)m.Rating).Average();
             ctx.Dispose();
-            return wl;
-        }*/
+            if (rating == null)
+            {
+                return 0;
+            }
+            return (double)rating;
+        }
+
+        public List<Movie> WatchlistMovies()
+        {
+            ctx = new MovieContext();
+            var list = ctx.Movies.Where(m => m.Type == 1).ToList();
+            ctx.Dispose();
+            return list;
+        }
+
+        public List<Movie> WatchedMovies()
+        {
+            ctx = new MovieContext();
+            var list = ctx.Movies.Where(m => m.Type == 2).ToList();
+            ctx.Dispose();
+            return list;
+        }
+
+
     }
 }

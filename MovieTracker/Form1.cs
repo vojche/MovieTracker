@@ -46,8 +46,7 @@ namespace MovieTracker
             textBox5.Text =  da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
-           
-            
+            textBox8.Text = da.AverageRating().ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -419,7 +418,7 @@ namespace MovieTracker
 			povleciDetalniPodatoci(curr.imdbID);
             using (var ctx = new MovieContext())
             {
-                var type = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Select(m => m.Type);
+                var type = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Select(m => m.Type).SingleOrDefault();
 
                 if (type == null)
                 {
@@ -457,7 +456,7 @@ namespace MovieTracker
                     ctx.Movies.Add(movie);
                     ctx.SaveChanges();
                 }
-                else if (type.First() == 1)
+                else if (type == 1)
                 {
                     var test = ctx.Movies.Single(m => m.ImdbID == modalMovie.imdbID);
                     test.Type = 2;
@@ -465,13 +464,14 @@ namespace MovieTracker
                 }
 
             }
+            
             _addW = addW.Enabled = false;
             _addWL = addWL.Enabled = false;
             textBox5.Text = da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
+            textBox8.Text = da.AverageRating().ToString();
 
-            
         }
 
         

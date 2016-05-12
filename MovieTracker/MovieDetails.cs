@@ -16,10 +16,10 @@ namespace MovieTracker
         public string plot { get; set; }
         public string language { get; set; }
         public string awards { get; set; }
-        public double imdbRating { get; set; }
+        public float imdbRating { get; set; }
 
 
-        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, string actors, string plot, string language, string awards, double imdbRating) : base(title, year, imdbID, poster)
+        public MovieDetails(string title, int year, string imdbID, string poster, DateTime release, int runtime, List<string> genres, string director, string actors, string plot, string language, string awards, float imdbRating) : base(title, year, imdbID, poster)
         {
             this.release = release;
             this.runtime = runtime;
@@ -60,9 +60,17 @@ namespace MovieTracker
         public string Genres()
         {
             StringBuilder sb = new StringBuilder();
+            string last = genres.Last();
             foreach (string s in genres)
             {
-                sb.Append(s + ", ");
+                if (s.Equals(last))
+                {
+                    sb.Append(s);
+                }
+                else
+                {
+                    sb.Append(s + ", ");
+                }  
             }
             return sb.ToString();
         }
