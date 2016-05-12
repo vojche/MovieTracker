@@ -47,15 +47,15 @@ namespace MovieTracker.DAL
                 months = 0;
             }
 
-            if (minutes == 0)
+            if (months == 0 && days == 0 && hours == 0 && minutes == 0)
             {
                 return String.Format("Nemate gledano filmovi!");
             }
-            else if (hours == 0)
+            else if (months == 0 && days == 0 && hours == 0)
             {
                 return String.Format("{0} minutes", minutes);
             }
-            else if (days == 0)
+            else if (months == 0 && days == 0)
             {
                 return String.Format("{0} hours, {1} minutes", hours, minutes);
             }

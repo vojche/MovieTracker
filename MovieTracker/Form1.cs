@@ -265,7 +265,7 @@ namespace MovieTracker
             }
             else
             {
-                released = new DateTime(1550, 01, 01);
+                released = new DateTime(1800, 01, 01);
             }    
 
             List<string> genres = new List<string>();
