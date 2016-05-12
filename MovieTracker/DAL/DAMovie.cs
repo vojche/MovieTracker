@@ -33,5 +33,13 @@ namespace MovieTracker.DAL
             ctx.Dispose();
             return time;
         }
+
+        public int RatingBetween(double min, double max)
+        {
+            ctx = new MovieContext();
+            var count = ctx.Movies.Where(m => m.Type == 2).Select(m => (double)m.Rating >= min && (double)m.Rating <= max).Count();
+            ctx.Dispose();
+            return count;
+        }
     }
 }

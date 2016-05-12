@@ -34,7 +34,7 @@
     <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Year" Type="datetime" Nullable="false" />
     <Property Name="Runtime" Type="int" Nullable="false" />
-    <Property Name="Director" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Director" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Actors" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Plot" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Awards" Type="nvarchar(max)" Nullable="false" />
@@ -96,7 +96,7 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Runtime" Type="Int32" Nullable="false" />
-          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Actors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Plot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Awards" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />

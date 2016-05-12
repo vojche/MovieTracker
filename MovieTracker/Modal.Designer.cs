@@ -90,6 +90,7 @@
             // 
             // textBox10
             // 
+            this.textBox10.Enabled = false;
             this.textBox10.Location = new System.Drawing.Point(308, 104);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
@@ -110,6 +111,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(506, 30);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -128,6 +130,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(77, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -176,6 +179,7 @@
             // 
             // textBox8
             // 
+            this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(506, 64);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -194,6 +198,7 @@
             // 
             // textBox7
             // 
+            this.textBox7.Enabled = false;
             this.textBox7.Location = new System.Drawing.Point(325, 324);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
@@ -211,6 +216,7 @@
             // 
             // textBox6
             // 
+            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(267, 265);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -229,6 +235,7 @@
             // 
             // textBox5
             // 
+            this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(308, 222);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -246,6 +253,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(267, 162);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
@@ -264,6 +272,7 @@
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(340, 64);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;

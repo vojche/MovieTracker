@@ -90,7 +90,7 @@ namespace MovieTracker
                     else if (type.First() == 2)
                     {
                         _addW = addW.Enabled = false;
-                        _addWL = addWL.Enabled = true;
+                        _addWL = addWL.Enabled = false;
                     }
                 }
                 else if (IsAdded == 0)
@@ -239,8 +239,7 @@ namespace MovieTracker
             }    
 
             List<string> genres = new List<string>();
-            //string gen = o["Genre"].ToString();
-            string[] gen2 = o["Genre"].ToString().Split(' ');
+            string[] gen2 = o["Genre"].ToString().Split(',');
             foreach (string i in gen2)
             {
                 genres.Add(i.Trim());
@@ -284,38 +283,6 @@ namespace MovieTracker
                 details.Enabled = true;
 
                 additionButtons();
-                /*using (var ctx = new MovieContext())
-                {
-                    int IsAdded = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Count();
-
-                    if (IsAdded == 1)
-                    {
-                        var type = from movie in ctx.Movies
-                                   where movie.ImdbID == curr.imdbID
-                                   select movie.Type;
-
-                        if (type.First() == null)
-                        {
-                            addW.Enabled = true;
-                            addWL.Enabled = true;
-                        }
-                        else if (type.First() == 1)
-                        {
-                            addW.Enabled = true;
-                            addWL.Enabled = false;
-                        }
-                        else if (type.First() == 2)
-                        {
-                            addW.Enabled = false;
-                            addWL.Enabled = true;
-                        }
-                    }
-                    else if (IsAdded == 0)
-                    {
-                        addW.Enabled = true;
-                        addWL.Enabled = true;
-                    }
-                }*/
             }
 
             
@@ -402,16 +369,35 @@ namespace MovieTracker
             povleciDetalniPodatoci(curr.imdbID);
             using (var ctx = new MovieContext())
             {
-                var query = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Count();
+                var movie = new Movie
+                {
+                    ImdbID = modalMovie.imdbID,
+                    Title = modalMovie.title,
+                    Year = modalMovie.release,
+                    Runtime = modalMovie.runtime,
+                    Director = modalMovie.director,
+                    Actors = modalMovie.actors,
+                    Plot = modalMovie.plot,
+                    Language = modalMovie.language,
+                    Awards = modalMovie.awards,
+                    Image = modalMovie.poster,
+                    Rating = (decimal)modalMovie.imdbRating,
+                    Type = 1
+                };
 
-                var movie = new Movie { ImdbID = modalMovie.imdbID ,Title = modalMovie.title,
-                    Year = modalMovie.release, Runtime = modalMovie.runtime, Director = modalMovie.director,
-                    Actors = modalMovie.actors, Plot = modalMovie.plot, Language = modalMovie.language, Awards = modalMovie.awards,
-                    Image = modalMovie.poster, Rating = (decimal)modalMovie.imdbRating, Type = 1 };
                 foreach (string genre in modalMovie.genres)
                 {
-                    Genre g = new Genre { Name = genre };
-                    ctx.Genres.Add(g);
+                    if (ctx.Genres.Any(m => m.Name == genre) == false)
+                    {
+                        Genre g = new Genre { Name = genre };
+                        ctx.Genres.Add(g);
+                        movie.Genres.Add(g);
+                    }
+                    else
+                    {
+                        var obj = ctx.Genres.First(m => m.Name == genre);
+                        movie.Genres.Add(obj);
+                    }
                 }
                 ctx.Movies.Add(movie);
                 ctx.SaveChanges();
@@ -426,6 +412,60 @@ namespace MovieTracker
 
         private void addW_Click(object sender, EventArgs e)
         {
+			povleciDetalniPodatoci(curr.imdbID);
+            using (var ctx = new MovieContext())
+            {
+                var type = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Select(m => m.Type);
+
+                if (type == null)
+                {
+                    var movie = new Movie
+                    {
+                        ImdbID = modalMovie.imdbID,
+                        Title = modalMovie.title,
+                        Year = modalMovie.release,
+                        Runtime = modalMovie.runtime,
+                        Director = modalMovie.director,
+                        Actors = modalMovie.actors,
+                        Plot = modalMovie.plot,
+                        Language = modalMovie.language,
+                        Awards = modalMovie.awards,
+                        Image = modalMovie.poster,
+                        Rating = (decimal)modalMovie.imdbRating,
+                        Type = 2
+                    };
+
+                    foreach (string genre in modalMovie.genres)
+                    {
+                        Genre g = new Genre { Name = genre };
+                        if (ctx.Genres.Any(m => m.Name == genre) == false)
+                        {
+                            ctx.Genres.Add(g);
+                            movie.Genres.Add(g);
+                        }
+                        else
+                        {
+                            var obj = ctx.Genres.First(m => m.Name == genre);
+                            movie.Genres.Add(obj);
+                        }
+                    }
+                    ctx.Movies.Add(movie);
+                    ctx.SaveChanges();
+                }
+                else if (type.First() == 1)
+                {
+                    var test = ctx.Movies.Single(m => m.ImdbID == modalMovie.imdbID);
+                    test.Type = 2;
+                    ctx.SaveChanges();
+                }
+
+            }
+            _addW = addW.Enabled = false;
+            _addWL = addWL.Enabled = false;
+            textBox5.Text = da.CountWatchedMovies().ToString();
+            textBox6.Text = da.CountMoviesWatchlist().ToString();
+            textBox7.Text = da.CountTimeSpent().ToString();
+
             SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
             watchedMoivesList.Items.Add(selectedMovie);
             numWatchedMovies.Text = watchedMoivesList.Items.Count + "";

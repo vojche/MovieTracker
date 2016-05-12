@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/11/2016 13:27:57
--- Generated from EDMX file: C:\Users\Bojan\Documents\SmartGit\MovieTracker\MovieTracker\Model1.edmx
+-- Date Created: 05/12/2016 03:03:44
+-- Generated from EDMX file: D:\Projects\MovieTracker\MovieTracker\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -56,7 +56,7 @@ CREATE TABLE [dbo].[Movies] (
     [Title] nvarchar(50)  NOT NULL,
     [Year] datetime  NOT NULL,
     [Runtime] int  NOT NULL,
-    [Director] nvarchar(50)  NOT NULL,
+    [Director] nvarchar(max)  NOT NULL,
     [Actors] nvarchar(max)  NOT NULL,
     [Plot] nvarchar(max)  NOT NULL,
     [Awards] nvarchar(max)  NOT NULL,
