@@ -54,7 +54,7 @@ namespace MovieTracker.DAL
                 year = row.Year,
                 imdbID = row.ImdbID,
                 poster = row.Image,
-                release = row.Year.ToUniversalTime(),
+                release = row.Release.GetValueOrDefault(),
                 runtime = row.Runtime,
                 genres = genre,
                 director = row.Director,

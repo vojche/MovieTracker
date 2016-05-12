@@ -46,7 +46,7 @@ namespace MovieTracker
             textBox5.Text =  da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
-            movieDetailsButton.Enabled = false;
+           
             
         }
 
@@ -257,6 +257,7 @@ namespace MovieTracker
             }
             modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Awards"].ToString(), imdbRating);
 
+            runtime = 3;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -376,6 +377,7 @@ namespace MovieTracker
                     ImdbID = modalMovie.imdbID,
                     Title = modalMovie.title,
                     Year = modalMovie.year,
+                    Release = modalMovie.release,
                     Runtime = modalMovie.runtime,
                     Director = modalMovie.director,
                     Actors = modalMovie.actors,
@@ -469,92 +471,24 @@ namespace MovieTracker
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
 
-            SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
-            watchedMoivesList.Items.Add(selectedMovie);
-            numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
+            
         }
 
-        private void watchedMoivesList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SearchMovie selectedMovie = watchedMoivesList.SelectedItem as SearchMovie;
-            if (selectedMovie != null)
-            {
-                movieTitle.Text = selectedMovie.title;
-                selectedMovie.postaviPoster(selectedMovieImage, internet);
-                movieDetailsButton.Enabled = true;
-            }
+        
 
-        }
+        
 
-        private void removeMovieButton_Click(object sender, EventArgs e)
-        {
-            SearchMovie selectedMovie = watchedMoivesList.SelectedItem as SearchMovie;
-            if (selectedMovie != null)
-            {
-                watchedMoivesList.Items.Remove(selectedMovie);
-                movieTitle.Text = "";
-                selectedMovieImage.Image = null;
-                movieDetailsButton.Enabled = false;
-                numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
-            }
-        }
-
-        private void movieDetailsButton_Click(object sender, EventArgs e)
-        {
-            curr = watchedMoivesList.SelectedItem as SearchMovie;
-            povleciDetalniPodatoci(curr.imdbID);
-            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
-            modal.ShowDialog();
-        }
+        
 
        
 
         private void toWatchList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
-            if (selectedMovie != null)
-            {
-                toWatchMovie.Text = selectedMovie.title;
-                selectedMovie.postaviPoster(toWatchMovieImg, internet);
-                toWatchMovieDetailsBtn.Enabled = true;
-            }*/
+            
         }
 
-        private void toWatchMovieDetailsBtn_Click(object sender, EventArgs e)
-        {
-            curr = toWatchList.SelectedItem as SearchMovie;
-            povleciDetalniPodatoci(curr.imdbID);
-            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
-            modal.ShowDialog();
-        }
+       
 
-        /*private void addToWatchedBtn_Click(object sender, EventArgs e)
-        {
-            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
-            if (selectedMovie != null)
-            {
-                watchedMoivesList.Items.Add(selectedMovie);
-                toWatchList.Items.Remove(selectedMovie);
-                toWatchMovie.Text = "";
-                toWatchMovieImg.Image = null;
-                toWatchMovieDetailsBtn.Enabled = false;
-                numMoviesToWatch.Text = toWatchList.Items.Count + "";
-                numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
-            }
-        }*/
-/*
-        private void removeMovieBtn_Click(object sender, EventArgs e)
-        {
-            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
-            if (selectedMovie != null)
-            {
-                toWatchList.Items.Remove(selectedMovie);
-                toWatchMovie.Text = "";
-                toWatchMovieImg.Image = null;
-                toWatchMovieDetailsBtn.Enabled = false;
-                numMoviesToWatch.Text = toWatchList.Items.Count + "";
-            }
-        }*/
-
+       
     }
 }
