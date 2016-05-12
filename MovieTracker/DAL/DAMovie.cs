@@ -26,12 +26,47 @@ namespace MovieTracker.DAL
             return counter;
         }
 
-        public int CountTimeSpent()
+        public string CountTimeSpent()
         {
             ctx = new MovieContext();
             var time = ctx.Movies.Where(m => m.Type == 2).Select(m => m.Runtime).DefaultIfEmpty(0).Sum();
             ctx.Dispose();
-            return time;
+            TimeSpan ts = TimeSpan.FromMinutes(time);
+            int months;
+            int days;
+            int hours = ts.Hours;
+            int minutes = ts.Minutes;
+            if (ts.Days >= 30)
+            {
+                months = ts.Days / 30;
+                days = ts.Days % 30;
+            }
+            else
+            {
+                days = ts.Days;
+                months = 0;
+            }
+
+            if (minutes == 0)
+            {
+                return String.Format("Nemate gledano filmovi!");
+            }
+            else if (hours == 0)
+            {
+                return String.Format("{0} minutes", minutes);
+            }
+            else if (days == 0)
+            {
+                return String.Format("{0} hours, {1} minutes", hours, minutes);
+            }
+            else if (months == 0)
+            {
+                return String.Format("{0} days, {1} hours, {2} minutes", days, hours, minutes);
+            }
+            else
+            {
+                return String.Format("{0} months, {1} days, {2} hours, {3} minutes", months, days, hours, minutes);
+            }
         }
 
         public int RatingBetween(double min, double max)
