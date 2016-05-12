@@ -39,6 +39,7 @@ namespace MovieTracker
             checkInternetConnection();
             MaximizeBox = false;
             pictureBox2.Image = Bitmap.FromFile(@"..\..\Pictures\logo.png");
+            pictureBox4.Image = Bitmap.FromFile(@"..\..\Pictures\omdb.png");
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             searchList = new List<SearchMovie>();
             da = new DAMovie();
@@ -46,7 +47,7 @@ namespace MovieTracker
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
             movieDetailsButton.Enabled = false;
-            toWatchMovieDetailsBtn.Enabled = false;
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -239,6 +240,7 @@ namespace MovieTracker
             }    
 
             List<string> genres = new List<string>();
+
             string[] gen2 = o["Genre"].ToString().Split(',');
             foreach (string i in gen2)
             {
@@ -405,9 +407,9 @@ namespace MovieTracker
             _addWL = addWL.Enabled = false;
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             // za vo tabot watch list
-            SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
+            /*SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
             toWatchList.Items.Add(selectedMovie);
-            numMoviesToWatch.Text = toWatchList.Items.Count + "";
+            numMoviesToWatch.Text = toWatchList.Items.Count + "";*/
         }
 
         private void addW_Click(object sender, EventArgs e)
@@ -508,13 +510,13 @@ namespace MovieTracker
 
         private void toWatchList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
+            /*SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
             if (selectedMovie != null)
             {
                 toWatchMovie.Text = selectedMovie.title;
                 selectedMovie.postaviPoster(toWatchMovieImg, internet);
                 toWatchMovieDetailsBtn.Enabled = true;
-            }
+            }*/
         }
 
         private void toWatchMovieDetailsBtn_Click(object sender, EventArgs e)
@@ -525,7 +527,7 @@ namespace MovieTracker
             modal.ShowDialog();
         }
 
-        private void addToWatchedBtn_Click(object sender, EventArgs e)
+        /*private void addToWatchedBtn_Click(object sender, EventArgs e)
         {
             SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
             if (selectedMovie != null)
@@ -538,8 +540,8 @@ namespace MovieTracker
                 numMoviesToWatch.Text = toWatchList.Items.Count + "";
                 numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
             }
-        }
-
+        }*/
+/*
         private void removeMovieBtn_Click(object sender, EventArgs e)
         {
             SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
@@ -551,7 +553,7 @@ namespace MovieTracker
                 toWatchMovieDetailsBtn.Enabled = false;
                 numMoviesToWatch.Text = toWatchList.Items.Count + "";
             }
-        }
+        }*/
 
     }
 }

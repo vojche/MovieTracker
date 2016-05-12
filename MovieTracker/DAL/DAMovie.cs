@@ -41,5 +41,33 @@ namespace MovieTracker.DAL
             ctx.Dispose();
             return count;
         }
+
+        /*public List<MovieDetails> WatchlistMovies()
+        {
+            List<MovieDetails> wl;
+            ctx = new MovieContext();
+            List<string> genre = new List<string>();
+            genre.Add("N/A");
+
+            wl = ctx.Movies.Where(m => m.Type == 1).Select(row => new MovieDetails {
+                title = row.Title,
+                year = row.Year,
+                imdbID = row.ImdbID,
+                poster = row.Image,
+                release = row.Year.ToUniversalTime(),
+                runtime = row.Runtime,
+                genres = genre,
+                director = row.Director,
+                actors = row.Actors,
+                plot = row.Plot,
+                language = row.Language,
+                awards = row.Awards,
+               imdbRating = (double)row.Rating
+
+            }).ToList();
+
+            ctx.Dispose();
+            return wl;
+        }*/
     }
 }

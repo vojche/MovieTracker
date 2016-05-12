@@ -62,7 +62,7 @@ namespace MovieTracker
             StringBuilder sb = new StringBuilder();
             foreach (string s in genres)
             {
-                sb.Append(s + " ");
+                sb.Append(s + ", ");
             }
             return sb.ToString();
         }
