@@ -37,7 +37,23 @@ namespace MovieTracker.DAL
         public int RatingBetween(double min, double max)
         {
             ctx = new MovieContext();
-            var count = ctx.Movies.Where(m => m.Type == 2).Select(m => (double)m.Rating >= min && (double)m.Rating <= max).Count();
+            var count = ctx.Movies.Where(m => m.Type == 2).Where(m => (double)m.Rating >= min && (double)m.Rating <= max).Count();
+            ctx.Dispose();
+            return count;
+        }
+
+        public int RatingBellow()
+        {
+            ctx = new MovieContext();
+            var count = ctx.Movies.Where(m => m.Type == 2).Where(m => (double)m.Rating <= 5.4).Count();
+            ctx.Dispose();
+            return count;
+        }
+
+        public int RatingAbove()
+        {
+            ctx = new MovieContext();
+            var count = ctx.Movies.Where(m => m.Type == 2).Where(m => (double)m.Rating >= 9.5).Count();
             ctx.Dispose();
             return count;
         }
@@ -54,22 +70,13 @@ namespace MovieTracker.DAL
             return (double)rating;
         }
 
-        public List<Movie> WatchlistMovies()
+        public List<Movie> ReturnList(int type)
         {
             ctx = new MovieContext();
-            var list = ctx.Movies.Where(m => m.Type == 1).ToList();
+            var list = ctx.Movies.Where(m => m.Type == type).ToList();
             ctx.Dispose();
             return list;
         }
-
-        public List<Movie> WatchedMovies()
-        {
-            ctx = new MovieContext();
-            var list = ctx.Movies.Where(m => m.Type == 2).ToList();
-            ctx.Dispose();
-            return list;
-        }
-
-
+               
     }
 }

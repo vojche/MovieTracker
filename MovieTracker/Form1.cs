@@ -31,8 +31,9 @@ namespace MovieTracker
         private bool _addWL { get; set; }
         private bool _addW { get; set; }
         private bool _checkBox1Enabled = false;
-        DAMovie da;            
-
+        DAMovie da;
+        List<Movie> WatchlistMovies = new List<Movie>();
+        List<Movie> WatchedMovies = new List<Movie>();
         public Form1()
         {
             InitializeComponent();
@@ -43,10 +44,39 @@ namespace MovieTracker
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             searchList = new List<SearchMovie>();
             da = new DAMovie();
-            textBox5.Text =  da.CountWatchedMovies().ToString();
+
+            GeneralStatistic();
+            RatingStatistic();
+        }
+
+        private void GeneralStatistic()
+        {
+            textBox5.Text = da.CountWatchedMovies().ToString();
             textBox6.Text = da.CountMoviesWatchlist().ToString();
             textBox7.Text = da.CountTimeSpent().ToString();
-            textBox8.Text = da.AverageRating().ToString();
+            textBox8.Text = String.Format("{0:0.00}", da.AverageRating());
+        }
+
+        private void RatingStatistic()
+        {
+            progressBar1.Maximum = progressBar2.Maximum = progressBar3.Maximum = progressBar4.Maximum = progressBar5.Maximum = progressBar6.Maximum = da.CountWatchedMovies();
+            progressBar1.Value = da.RatingBellow();
+            textBox2.Text = progressBar1.Value.ToString();
+
+            progressBar2.Value = da.RatingBetween(5.5, 6.4);
+            textBox9.Text = progressBar2.Value.ToString();
+
+            progressBar3.Value = da.RatingBetween(6.5, 7.4);
+            textBox10.Text = progressBar3.Value.ToString();
+
+            progressBar4.Value = da.RatingBetween(7.5, 8.4);
+            textBox11.Text = progressBar4.Value.ToString();
+
+            progressBar5.Value = da.RatingBetween(8.5, 9.4);
+            textBox12.Text = progressBar5.Value.ToString();
+
+            progressBar6.Value = da.RatingAbove();
+            textBox13.Text = progressBar6.Value.ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -467,28 +497,139 @@ namespace MovieTracker
             
             _addW = addW.Enabled = false;
             _addWL = addWL.Enabled = false;
-            textBox5.Text = da.CountWatchedMovies().ToString();
-            textBox6.Text = da.CountMoviesWatchlist().ToString();
-            textBox7.Text = da.CountTimeSpent().ToString();
-            textBox8.Text = da.AverageRating().ToString();
+            GeneralStatistic();
 
+            RatingStatistic();
         }
 
-        
+        private List<Movie> SortingFiltring(List<Movie> list)
+        {
+            List<Movie> ret = new List<Movie>();
+            if(radioButton4.Checked == true || radioButton1.Checked == true)
+            {
+                ret = list.OrderByDescending(x => x.Year).ToList();
+            }
+            else if(radioButton2.Checked == true || radioButton3.Checked == true)
+            {
+                ret = list.OrderByDescending(x => x.Rating).ToList();
+            }
 
-        
+            return ret;
+        }
 
-        
-
-       
-
+        private void watchedList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (watchedList.SelectedIndex != -1)
+            {
+                Movie selected = watchedList.SelectedItem as Movie;
+                textBox25.Text = selected.Title;
+                textBox24.Text = selected.RuntimeMethod();
+                textBox32.Text = selected.ReleaseMethod();
+                textBox27.Text = selected.RatingMethod();
+                textBox23.Text = selected.Awards;
+                textBox31.Text = selected.GenresMethod();
+                textBox30.Text = selected.Director;
+                textBox29.Text = selected.Actors;
+                textBox28.Text = selected.Language;
+                textBox26.Text = selected.Plot;
+                selected.setPoster(pictureBox5, internet);
+                button5.Enabled = true;
+            }
+        }
+                
         private void toWatchList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if(toWatchList.SelectedIndex != -1)
+            {
+                Movie selected = toWatchList.SelectedItem as Movie;
+                textBox15.Text = selected.Title;
+                textBox14.Text = selected.RuntimeMethod();
+                textBox22.Text = selected.ReleaseMethod();
+                textBox17.Text = selected.RatingMethod();
+                textBox3.Text = selected.Awards;
+                textBox21.Text = selected.GenresMethod();
+                textBox20.Text = selected.Director;
+                textBox19.Text = selected.Actors;
+                textBox18.Text = selected.Language;
+                textBox16.Text = selected.Plot;
+                selected.setPoster(pictureBox3, internet);
+                button2.Enabled = button3.Enabled = true;
+            }
         }
 
-       
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (tabControl1.SelectedIndex == 1)
+            {
+                WatchedMovies.Clear();
+                WatchedMovies = da.ReturnList(2);
+                watchedList.Items.Clear();
+                button5.Enabled = radioButton3.Checked = radioButton4.Checked = false;
+                if (WatchedMovies.Count != 0)
+                {
+                    foreach (Movie m in WatchedMovies)
+                    {
+                        watchedList.Items.Add(m);
+                    }
+                    radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
+                }                
 
-       
+            }
+            else if (tabControl1.SelectedIndex == 2)
+            {
+                WatchlistMovies.Clear();
+                WatchlistMovies = da.ReturnList(1);
+                toWatchList.Items.Clear();
+                button2.Enabled = button3.Enabled = radioButton1.Checked = radioButton2.Checked = false;
+                if (WatchlistMovies.Count != 0)
+                {
+                    foreach (Movie m in WatchlistMovies)
+                    {
+                        toWatchList.Items.Add(m);
+                    }
+                    radioButton1.Enabled = radioButton2.Enabled = comboBox1.Enabled = true;
+                }               
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            watchedList.Items.Clear();
+            foreach (Movie m in SortingFiltring(WatchedMovies))
+            {
+                watchedList.Items.Add(m);
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            watchedList.Items.Clear();
+            foreach (Movie m in SortingFiltring(WatchedMovies))
+            {
+                watchedList.Items.Add(m);
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            toWatchList.Items.Clear();
+
+            foreach (Movie m in SortingFiltring(WatchlistMovies))
+            {
+                toWatchList.Items.Add(m);
+            }
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            toWatchList.Items.Clear();
+
+            foreach (Movie m in SortingFiltring(WatchlistMovies))
+            {
+                toWatchList.Items.Add(m);
+            }
+        }
     }
 }

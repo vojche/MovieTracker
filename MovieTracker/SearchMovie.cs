@@ -47,9 +47,6 @@ namespace MovieTracker
             {
                 pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
             }
-
-
-
         }
 
         public override string ToString()
