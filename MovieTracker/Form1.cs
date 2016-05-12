@@ -416,7 +416,100 @@ namespace MovieTracker
             }
             _addWL = addWL.Enabled = false;
             textBox6.Text = da.CountMoviesWatchlist().ToString();
+            // za vo tabot watch list
+            SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
+            toWatchList.Items.Add(selectedMovie);
+            numMoviesToWatch.Text = toWatchList.Items.Count + "";
         }
-               
+
+        private void addW_Click(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
+            watchedMoivesList.Items.Add(selectedMovie);
+            numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
+        }
+
+        private void watchedMoivesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = watchedMoivesList.SelectedItem as SearchMovie;
+            if (selectedMovie != null)
+            {
+                movieTitle.Text = selectedMovie.title;
+                selectedMovie.postaviPoster(selectedMovieImage, internet);
+                movieDetailsButton.Enabled = true;
+            }
+
+        }
+
+        private void removeMovieButton_Click(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = watchedMoivesList.SelectedItem as SearchMovie;
+            if (selectedMovie != null)
+            {
+                watchedMoivesList.Items.Remove(selectedMovie);
+                movieTitle.Text = "";
+                selectedMovieImage.Image = null;
+                movieDetailsButton.Enabled = false;
+                numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
+            }
+        }
+
+        private void movieDetailsButton_Click(object sender, EventArgs e)
+        {
+            curr = watchedMoivesList.SelectedItem as SearchMovie;
+            povleciDetalniPodatoci(curr.imdbID);
+            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
+            modal.ShowDialog();
+        }
+
+       
+
+        private void toWatchList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
+            if (selectedMovie != null)
+            {
+                toWatchMovie.Text = selectedMovie.title;
+                selectedMovie.postaviPoster(toWatchMovieImg, internet);
+                toWatchMovieDetailsBtn.Enabled = true;
+            }
+        }
+
+        private void toWatchMovieDetailsBtn_Click(object sender, EventArgs e)
+        {
+            curr = toWatchList.SelectedItem as SearchMovie;
+            povleciDetalniPodatoci(curr.imdbID);
+            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
+            modal.ShowDialog();
+        }
+
+        private void addToWatchedBtn_Click(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
+            if (selectedMovie != null)
+            {
+                watchedMoivesList.Items.Add(selectedMovie);
+                toWatchList.Items.Remove(selectedMovie);
+                toWatchMovie.Text = "";
+                toWatchMovieImg.Image = null;
+                toWatchMovieDetailsBtn.Enabled = false;
+                numMoviesToWatch.Text = toWatchList.Items.Count + "";
+                numWatchedMovies.Text = watchedMoivesList.Items.Count + "";
+            }
+        }
+
+        private void removeMovieBtn_Click(object sender, EventArgs e)
+        {
+            SearchMovie selectedMovie = toWatchList.SelectedItem as SearchMovie;
+            if (selectedMovie != null)
+            {
+                toWatchList.Items.Remove(selectedMovie);
+                toWatchMovie.Text = "";
+                toWatchMovieImg.Image = null;
+                toWatchMovieDetailsBtn.Enabled = false;
+                numMoviesToWatch.Text = toWatchList.Items.Count + "";
+            }
+        }
+
     }
 }
