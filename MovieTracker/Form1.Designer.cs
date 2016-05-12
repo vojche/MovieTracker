@@ -203,18 +203,20 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(156, 217);
+            this.progressBar1.Location = new System.Drawing.Point(208, 267);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(86, 20);
+            this.progressBar1.Size = new System.Drawing.Size(115, 25);
             this.progressBar1.TabIndex = 54;
             // 
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(107, 217);
+            this.textBox2.Location = new System.Drawing.Point(143, 267);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(43, 20);
+            this.textBox2.Size = new System.Drawing.Size(56, 22);
             this.textBox2.TabIndex = 53;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
