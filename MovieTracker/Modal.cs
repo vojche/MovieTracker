@@ -43,16 +43,6 @@ namespace MovieTracker
             da = new DAMovie();
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void addWL_Click(object sender, EventArgs e)
         {
             using (var ctx = new MovieContext())

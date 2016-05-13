@@ -97,7 +97,6 @@
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(270, 37);
             this.textBox10.TabIndex = 42;
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // label10
             // 
@@ -107,7 +106,6 @@
             this.label10.Size = new System.Drawing.Size(42, 13);
             this.label10.TabIndex = 41;
             this.label10.Text = "Awards";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // textBox2
             // 

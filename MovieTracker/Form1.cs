@@ -466,10 +466,6 @@ namespace MovieTracker
             }
             _addWL = addWL.Enabled = false;
             textBox6.Text = da.CountMoviesWatchlist().ToString();
-            // za vo tabot watch list
-            /*SearchMovie selectedMovie = listBox1.SelectedItem as SearchMovie;
-            toWatchList.Items.Add(selectedMovie);
-            numMoviesToWatch.Text = toWatchList.Items.Count + "";*/
         }
 
         private void addW_Click(object sender, EventArgs e)
@@ -686,7 +682,6 @@ namespace MovieTracker
             {
                 toWatchList.Items.Add(m);
             }
-
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -702,6 +697,9 @@ namespace MovieTracker
         {
             Movie selected = watchedList.SelectedItem as Movie;
             da.UpdateStatus(selected, 0);
+
+            watchedList.Items.Remove(selected);
+            WatchedMovies.Remove(selected);
                        
             GeneralStatistic();
             RatingStatistic();
@@ -719,16 +717,8 @@ namespace MovieTracker
             textBox31.Clear();
             textBox32.Clear();
 
-            WatchedMovies.Clear();
-            WatchedMovies = da.ReturnList(2);
-            watchedList.Items.Clear();
-            radioButton3.Checked = radioButton4.Checked = false;
             if (WatchedMovies.Count != 0)
             {
-                foreach (Movie m in WatchedMovies)
-                {
-                    watchedList.Items.Add(m);
-                }
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
             else
@@ -744,6 +734,7 @@ namespace MovieTracker
             da.UpdateStatus(selected, 0);
 
             toWatchList.Items.Remove(selected);
+            WatchlistMovies.Remove(selected);
             
             GeneralStatistic();
             RatingStatistic();
@@ -762,16 +753,8 @@ namespace MovieTracker
             textBox18.Clear();
             textBox16.Clear();
 
-            WatchlistMovies.Clear();
-            WatchlistMovies = da.ReturnList(1); // 1 - watchlist
-            toWatchList.Items.Clear();
-            radioButton2.Checked = radioButton1.Checked = false;
             if (WatchlistMovies.Count > 0)
             {
-                foreach (Movie m in WatchlistMovies)
-                {
-                    toWatchList.Items.Add(m);
-                }
                 radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
             }
             else
@@ -786,8 +769,8 @@ namespace MovieTracker
         {
             Movie selected = toWatchList.SelectedItem as Movie;
             da.UpdateStatus(selected, 2); // 2 - watched
-            watchedList.Items.Add(selected);
 
+            WatchlistMovies.Remove(selected);
             toWatchList.Items.Remove(selected);
             
             GeneralStatistic();
@@ -808,16 +791,8 @@ namespace MovieTracker
             textBox18.Clear();
             textBox16.Clear();
 
-            WatchlistMovies.Clear();
-            WatchlistMovies = da.ReturnList(1);
-            toWatchList.Items.Clear();
-            radioButton2.Checked = radioButton1.Checked = false;
             if (WatchlistMovies.Count > 0)
             {
-                foreach (Movie m in WatchlistMovies)
-                {
-                    toWatchList.Items.Add(m);
-                }
                 radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
             }
             else

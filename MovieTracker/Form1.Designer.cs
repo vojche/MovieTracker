@@ -197,7 +197,7 @@
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(875, 514);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Watchlist";
@@ -456,9 +456,9 @@
             this.groupBox5.Controls.Add(this.groupBox7);
             this.groupBox5.Controls.Add(this.toWatchList);
             this.groupBox5.Location = new System.Drawing.Point(6, 6);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(262, 488);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
@@ -562,7 +562,7 @@
             this.toWatchList.FormattingEnabled = true;
             this.toWatchList.HorizontalScrollbar = true;
             this.toWatchList.Location = new System.Drawing.Point(8, 106);
-            this.toWatchList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toWatchList.Margin = new System.Windows.Forms.Padding(2);
             this.toWatchList.Name = "toWatchList";
             this.toWatchList.Size = new System.Drawing.Size(247, 368);
             this.toWatchList.TabIndex = 0;
@@ -574,7 +574,7 @@
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(875, 514);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Watched movies";
@@ -604,7 +604,7 @@
             this.groupBox4.Controls.Add(this.label35);
             this.groupBox4.Controls.Add(this.label36);
             this.groupBox4.Controls.Add(this.pictureBox5);
-            this.groupBox4.Location = new System.Drawing.Point(272, 6);
+            this.groupBox4.Location = new System.Drawing.Point(273, 6);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(590, 488);
             this.groupBox4.TabIndex = 2;
@@ -820,10 +820,10 @@
             // 
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.watchedList);
-            this.groupBox2.Location = new System.Drawing.Point(5, 5);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(262, 488);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
@@ -927,7 +927,7 @@
             this.watchedList.FormattingEnabled = true;
             this.watchedList.HorizontalScrollbar = true;
             this.watchedList.Location = new System.Drawing.Point(8, 106);
-            this.watchedList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.watchedList.Margin = new System.Windows.Forms.Padding(2);
             this.watchedList.Name = "watchedList";
             this.watchedList.Size = new System.Drawing.Size(247, 368);
             this.watchedList.TabIndex = 0;
