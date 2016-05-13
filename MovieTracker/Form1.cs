@@ -723,7 +723,7 @@ namespace MovieTracker
             }
             else
             {
-                radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = false;
+                radioButton4.Checked = radioButton3.Checked = radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = false;
             }
         }
 
@@ -759,7 +759,7 @@ namespace MovieTracker
             }
             else
             {
-                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
+                radioButton2.Checked = radioButton1.Checked = radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
             }
 
         }
@@ -797,7 +797,7 @@ namespace MovieTracker
             }
             else
             {
-                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
+                radioButton2.Checked = radioButton1.Checked = radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
             }
 
         }

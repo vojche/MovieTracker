@@ -48,17 +48,23 @@ namespace MovieTracker
         }
 
         public void setPoster(PictureBox pictureBox, bool internet)
-        {
-            //string link;
-            if (internet)
+        {            
+            try
             {
-                if (!Image.Equals("N/A"))
+                if (internet)
                 {
-                    var request = WebRequest.Create(Image);
-                    using (var response = request.GetResponse())
-                    using (var stream = response.GetResponseStream())
+                    if (!Image.Equals("N/A"))
                     {
-                        pictureBox.Image = Bitmap.FromStream(stream);
+                        var request = WebRequest.Create(Image);
+                        using (var response = request.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        {
+                            pictureBox.Image = Bitmap.FromStream(stream);
+                        }
+                    }
+                    else
+                    {
+                        pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
                     }
                 }
                 else
@@ -66,7 +72,7 @@ namespace MovieTracker
                     pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
                 }
             }
-            else
+            catch(WebException we)
             {
                 pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
             }

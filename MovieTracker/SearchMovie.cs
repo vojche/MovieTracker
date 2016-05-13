@@ -25,17 +25,23 @@ namespace MovieTracker
         }
 
         public void postaviPoster(PictureBox pictureBox, bool internet)
-        {
-            //string link;
-            if (internet)
-            {
-                if (!poster.Equals("N/A"))
+        {           
+            try
+            { 
+                if (internet)
                 {
-                    var request = WebRequest.Create(poster);
-                    using (var response = request.GetResponse())
-                    using (var stream = response.GetResponseStream())
+                    if (!poster.Equals("N/A"))
                     {
-                        pictureBox.Image = Bitmap.FromStream(stream);
+                        var request = WebRequest.Create(poster);
+                        using (var response = request.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        {
+                            pictureBox.Image = Bitmap.FromStream(stream);
+                        }
+                    }
+                    else
+                    {
+                        pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
                     }
                 }
                 else
@@ -43,11 +49,11 @@ namespace MovieTracker
                     pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
                 }
             }
-            else
+            catch(WebException we)
             {
                 pictureBox.Image = Bitmap.FromFile(@"..\..\Pictures\default.png");
             }
-        }
+}
 
         public override string ToString()
         {

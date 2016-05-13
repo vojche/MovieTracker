@@ -47,45 +47,57 @@ namespace MovieTracker
         {
             using (var ctx = new MovieContext())
             {
-                var movie1 = new Movie
-                {
-                    ImdbID = movie.imdbID,
-                    Title = movie.title,
-                    Year = movie.year,
-                    Release = movie.release,
-                    Runtime = movie.runtime,
-                    Director = movie.director,
-                    Actors = movie.actors,
-                    Plot = movie.plot,
-                    Language = movie.language,
-                    Awards = movie.awards,
-                    Image = movie.poster,
-                    Rating = (decimal)movie.imdbRating,
-                    Type = 1
-                };
+                var type = ctx.Movies.Where(m => m.ImdbID == movie.imdbID).Select(m => m.Type).SingleOrDefault();
 
-                foreach (string genre in movie.genres)
+                if (type == null)
                 {
-                    if (ctx.Genres.Any(m => m.Name == genre) == false)
+                    var movie1 = new Movie
                     {
-                        Genre g = new Genre { Name = genre };
-                        ctx.Genres.Add(g);
-                        movie1.Genres.Add(g);
-                    }
-                    else
+                        ImdbID = movie.imdbID,
+                        Title = movie.title,
+                        Year = movie.year,
+                        Release = movie.release,
+                        Runtime = movie.runtime,
+                        Director = movie.director,
+                        Actors = movie.actors,
+                        Plot = movie.plot,
+                        Language = movie.language,
+                        Awards = movie.awards,
+                        Image = movie.poster,
+                        Rating = (decimal)movie.imdbRating,
+                        Type = 1
+                    };
+
+                    foreach (string genre in movie.genres)
                     {
-                        var obj = ctx.Genres.First(m => m.Name == genre);
-                        movie1.Genres.Add(obj);
+                        if (ctx.Genres.Any(m => m.Name == genre) == false)
+                        {
+                            Genre g = new Genre { Name = genre };
+                            ctx.Genres.Add(g);
+                            movie1.Genres.Add(g);
+                        }
+                        else
+                        {
+                            var obj = ctx.Genres.First(m => m.Name == genre);
+                            movie1.Genres.Add(obj);
+                        }
                     }
+
+                    ctx.Movies.Add(movie1);
+                    ctx.SaveChanges();
                 }
-                ctx.Movies.Add(movie1);
-                ctx.SaveChanges();
+                else if (type == 0)
+                {
+                    var movie1 = ctx.Movies.Where(m => m.ImdbID == movie.imdbID).SingleOrDefault();
+                    da.UpdateStatus(movie1, 1);
+                }
             }
             watchlistButton = addWL.Enabled = false;
         }
 
         private void addW_Click(object sender, EventArgs e)
         {
+            
             using (var ctx = new MovieContext())
             {
                 var type = ctx.Movies.Where(m => m.ImdbID == movie.imdbID).Select(m => m.Type).SingleOrDefault();
@@ -126,6 +138,11 @@ namespace MovieTracker
                     ctx.Movies.Add(movie1);
                     ctx.SaveChanges();
                 }
+                else if (type == 0)
+                {
+                    var movie1 = ctx.Movies.Where(m => m.ImdbID == movie.imdbID).SingleOrDefault();
+                    da.UpdateStatus(movie1, 2);
+                }
                 else if (type == 1)
                 {
                     var test = ctx.Movies.Single(m => m.ImdbID == movie.imdbID);
@@ -134,8 +151,10 @@ namespace MovieTracker
                 }
 
             }
-            watchlistButton = addW.Enabled = false;
-            watchedButton = addWL.Enabled = false;
+
+            watchedButton = addW.Enabled = false;
+            watchlistButton = addWL.Enabled = false;
+            
         }
     }
 }
