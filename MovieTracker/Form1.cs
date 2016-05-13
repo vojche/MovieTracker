@@ -81,9 +81,7 @@ namespace MovieTracker
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            /*_addW = addW.Enabled;
-            _addWL = addWL.Enabled;*/
+        {           
             checkInternetConnection();
         }
 
@@ -704,9 +702,9 @@ namespace MovieTracker
         {
             Movie selected = watchedList.SelectedItem as Movie;
             da.UpdateStatus(selected, 0);
-
-            textBox5.Text = watchedList.Items.Count + "";
-            textBox6.Text = toWatchList.Items.Count + "";
+                       
+            GeneralStatistic();
+            RatingStatistic();
 
             button5.Enabled = false;
             pictureBox5.Image = null;
@@ -733,6 +731,10 @@ namespace MovieTracker
                 }
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
+            else
+            {
+                radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = false;
+            }
         }
 
         // Delete movie from watchlist
@@ -742,8 +744,10 @@ namespace MovieTracker
             da.UpdateStatus(selected, 0);
 
             toWatchList.Items.Remove(selected);
-            textBox5.Text = watchedList.Items.Count + "";
-            textBox6.Text = toWatchList.Items.Count + "";
+            
+            GeneralStatistic();
+            RatingStatistic();
+
             button3.Enabled = false;
             button2.Enabled = false;
             pictureBox3.Image = null;
@@ -768,11 +772,16 @@ namespace MovieTracker
                 {
                     toWatchList.Items.Add(m);
                 }
-                radioButton2.Enabled = radioButton1.Enabled = comboBox2.Enabled = true;
+                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
+            }
+            else
+            {
+                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
             }
 
         }
-        // Add movie
+        
+        // Add movie to watched
         private void button2_Click(object sender, EventArgs e)
         {
             Movie selected = toWatchList.SelectedItem as Movie;
@@ -780,8 +789,9 @@ namespace MovieTracker
             watchedList.Items.Add(selected);
 
             toWatchList.Items.Remove(selected);
-            textBox5.Text = watchedList.Items.Count + "";
-            textBox6.Text = toWatchList.Items.Count + "";
+            
+            GeneralStatistic();
+            RatingStatistic();
 
             button3.Enabled = false;
             button2.Enabled = false;
@@ -808,9 +818,13 @@ namespace MovieTracker
                 {
                     toWatchList.Items.Add(m);
                 }
-                radioButton2.Enabled = radioButton1.Enabled = comboBox2.Enabled = true;
+                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
             }
-            
+            else
+            {
+                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
+            }
+
         }
     }
 }
