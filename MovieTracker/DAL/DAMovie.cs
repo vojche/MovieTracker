@@ -49,7 +49,7 @@ namespace MovieTracker.DAL
 
             if (months == 0 && days == 0 && hours == 0 && minutes == 0)
             {
-                return String.Format("Nemate gledano filmovi!");
+                return String.Format("You have not watched movies yet!");
             }
             else if (months == 0 && days == 0 && hours == 0)
             {

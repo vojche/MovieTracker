@@ -1187,17 +1187,17 @@
             // textBox7
             // 
             this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(65, 159);
+            this.textBox7.Location = new System.Drawing.Point(29, 161);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(165, 20);
+            this.textBox7.Size = new System.Drawing.Size(227, 20);
             this.textBox7.TabIndex = 32;
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(76, 141);
+            this.label6.Location = new System.Drawing.Point(68, 141);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 13);
             this.label6.TabIndex = 31;
