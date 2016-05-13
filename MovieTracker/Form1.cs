@@ -583,7 +583,7 @@ namespace MovieTracker
                 textBox22.Text = selected.ReleaseMethod();
                 textBox17.Text = selected.RatingMethod();
                 textBox3.Text = selected.Awards;
-                textBox21.Text = da.GenresByMovie(selected);
+                //textBox21.Text = da.GenresByMovie(selected);
                 textBox20.Text = selected.Director;
                 textBox19.Text = selected.Actors;
                 textBox18.Text = selected.Language;
@@ -705,6 +705,9 @@ namespace MovieTracker
             Movie selected = watchedList.SelectedItem as Movie;
             da.UpdateStatus(selected, 0);
 
+            textBox5.Text = watchedList.Items.Count + "";
+            textBox6.Text = toWatchList.Items.Count + "";
+
             button5.Enabled = false;
             pictureBox5.Image = null;
             textBox23.Clear();
@@ -730,6 +733,84 @@ namespace MovieTracker
                 }
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
+        }
+
+        // Delete movie from watchlist
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Movie selected = toWatchList.SelectedItem as Movie;
+            da.UpdateStatus(selected, 0);
+
+            toWatchList.Items.Remove(selected);
+            textBox5.Text = watchedList.Items.Count + "";
+            textBox6.Text = toWatchList.Items.Count + "";
+            button3.Enabled = false;
+            button2.Enabled = false;
+            pictureBox3.Image = null;
+            textBox15.Clear();
+            textBox14.Clear();
+            textBox22.Clear();
+            textBox17.Clear();
+            textBox3.Clear();
+            textBox21.Clear();
+            textBox20.Clear();
+            textBox19.Clear();
+            textBox18.Clear();
+            textBox16.Clear();
+
+            WatchlistMovies.Clear();
+            WatchlistMovies = da.ReturnList(1); // 1 - watchlist
+            toWatchList.Items.Clear();
+            radioButton2.Checked = radioButton1.Checked = false;
+            if (WatchlistMovies.Count > 0)
+            {
+                foreach (Movie m in WatchlistMovies)
+                {
+                    toWatchList.Items.Add(m);
+                }
+                radioButton2.Enabled = radioButton1.Enabled = comboBox2.Enabled = true;
+            }
+
+        }
+        // Add movie
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Movie selected = toWatchList.SelectedItem as Movie;
+            da.UpdateStatus(selected, 2); // 2 - watched
+            watchedList.Items.Add(selected);
+
+            toWatchList.Items.Remove(selected);
+            textBox5.Text = watchedList.Items.Count + "";
+            textBox6.Text = toWatchList.Items.Count + "";
+
+            button3.Enabled = false;
+            button2.Enabled = false;
+            pictureBox3.Image = null;
+
+            textBox15.Clear();
+            textBox14.Clear();
+            textBox22.Clear();
+            textBox17.Clear();
+            textBox3.Clear();
+            textBox21.Clear();
+            textBox20.Clear();
+            textBox19.Clear();
+            textBox18.Clear();
+            textBox16.Clear();
+
+            WatchlistMovies.Clear();
+            WatchlistMovies = da.ReturnList(1);
+            toWatchList.Items.Clear();
+            radioButton2.Checked = radioButton1.Checked = false;
+            if (WatchlistMovies.Count > 0)
+            {
+                foreach (Movie m in WatchlistMovies)
+                {
+                    toWatchList.Items.Add(m);
+                }
+                radioButton2.Enabled = radioButton1.Enabled = comboBox2.Enabled = true;
+            }
+            
         }
     }
 }
