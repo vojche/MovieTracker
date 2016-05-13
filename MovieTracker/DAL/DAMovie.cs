@@ -121,6 +121,14 @@ namespace MovieTracker.DAL
             ctx.SaveChanges();
             ctx.Dispose();
         }
+
+        public string GenresByMovie(Movie movie)
+        {
+            ctx = new MovieContext();
+            var query = ctx.Movies.Where(m => m.ImdbID == movie.ImdbID).Join(ctx.Genres, m => movie.Id, genre => genre.Id, (m, genre) => new { MovieName = m.Title, GenreName = genre.Name });
+            ctx.Dispose();
+            return query.ToString();
+        } 
                
     }
 }
