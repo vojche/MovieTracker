@@ -37,6 +37,7 @@ namespace MovieTracker
         public Form1()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             checkInternetConnection();
             MaximizeBox = false;
             pictureBox2.Image = Bitmap.FromFile(@"..\..\Pictures\logo.png");
@@ -573,17 +574,29 @@ namespace MovieTracker
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (tabControl1.SelectedIndex == 1)
+            if (tabControl1.SelectedIndex == 0)
             {
-                if (textBox25.Text.Length != 0)
-                {
-                    button5.Enabled = true;
-                }
-                else
-                {
-                    button5.Enabled = false;
-                }
+                listBox1.ClearSelected();
+                textBox1.Clear();
+                pictureBox1.Image = null;
+                details.Enabled = false;
+                addW.Enabled = false;
+                addWL.Enabled = false;
+            }
+            else if (tabControl1.SelectedIndex == 1)
+            {
+                button5.Enabled = false;
+                pictureBox5.Image = null;
+                textBox23.Clear();
+                textBox24.Clear();
+                textBox25.Clear();
+                textBox26.Clear();
+                textBox27.Clear();
+                textBox28.Clear();
+                textBox29.Clear();
+                textBox30.Clear();
+                textBox31.Clear();
+                textBox32.Clear();
 
                 WatchedMovies.Clear();
                 WatchedMovies = da.ReturnList(2);
@@ -601,14 +614,19 @@ namespace MovieTracker
             }
             else if (tabControl1.SelectedIndex == 2)
             {
-                if (textBox15.Text.Length != 0)
-                {
-                    button2.Enabled = button3.Enabled = true;
-                }
-                else
-                {
-                    button2.Enabled = button3.Enabled = false;
-                }
+                button2.Enabled = button3.Enabled = false;
+                pictureBox3.Image = null;
+                textBox3.Clear();
+                textBox14.Clear();
+                textBox15.Clear();
+                textBox16.Clear();
+                textBox17.Clear();
+                textBox18.Clear();
+                textBox19.Clear();
+                textBox20.Clear();
+                textBox21.Clear();
+                textBox22.Clear();
+
                 WatchlistMovies.Clear();
                 WatchlistMovies = da.ReturnList(1);
                 toWatchList.Items.Clear();
@@ -658,6 +676,38 @@ namespace MovieTracker
             foreach (Movie m in SortingFiltring(WatchlistMovies))
             {
                 toWatchList.Items.Add(m);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Movie selected = watchedList.SelectedItem as Movie;
+            da.UpdateStatus(selected, null);
+
+            button5.Enabled = false;
+            pictureBox5.Image = null;
+            textBox23.Clear();
+            textBox24.Clear();
+            textBox25.Clear();
+            textBox26.Clear();
+            textBox27.Clear();
+            textBox28.Clear();
+            textBox29.Clear();
+            textBox30.Clear();
+            textBox31.Clear();
+            textBox32.Clear();
+
+            WatchedMovies.Clear();
+            WatchedMovies = da.ReturnList(2);
+            watchedList.Items.Clear();
+            radioButton3.Checked = radioButton4.Checked = false;
+            if (WatchedMovies.Count != 0)
+            {
+                foreach (Movie m in WatchedMovies)
+                {
+                    watchedList.Items.Add(m);
+                }
+                radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
         }
     }

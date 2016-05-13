@@ -112,6 +112,15 @@ namespace MovieTracker.DAL
             ctx.Dispose();
             return list;
         }
+
+        public void UpdateStatus(Movie movie, int? status)
+        {
+            ctx = new MovieContext();
+            var mov = ctx.Movies.Where(m => m.ImdbID == movie.ImdbID).FirstOrDefault();
+            mov.Type = status;
+            ctx.SaveChanges();
+            ctx.Dispose();
+        }
                
     }
 }

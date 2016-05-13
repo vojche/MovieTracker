@@ -665,6 +665,7 @@
             this.button5.TabIndex = 36;
             this.button5.Text = "Delete from watched movies\r\n";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox26
             // 
