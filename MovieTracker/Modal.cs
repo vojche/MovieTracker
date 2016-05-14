@@ -13,12 +13,12 @@ namespace MovieTracker
 {
     public partial class Modal : Form
     {
-        public MovieDetails movie;
+        public SearchMovie movie;
         public bool watchlistButton { get; set; }
         public bool watchedButton { get; set; }
         public bool internet { get; set; }
         DAMovie da;
-        public Modal(MovieDetails movie, bool watchlistButton, bool watchedButton, bool internet)
+        public Modal(SearchMovie movie, bool watchlistButton, bool watchedButton, bool internet)
         {
             InitializeComponent();
             MaximizeBox = false;            

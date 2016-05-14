@@ -22,7 +22,7 @@ namespace MovieTracker
     {
         public List<SearchMovie> searchList;
         public SearchMovie curr;
-        public MovieDetails modalMovie;
+        //public MovieDetails modalMovie;
         //public static string x { get; set; }
         public bool moreResults = false;
         public bool nextB { get; set; }
@@ -290,23 +290,40 @@ namespace MovieTracker
             {
                 imdbRating = (float)o["imdbRating"];
             }
-            modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Awards"].ToString(), imdbRating);
+
+            //novo
+            curr.release = released;
+            curr.runtime = runtime;
+            curr.genres = genres;
+            curr.director = o["Director"].ToString();
+            curr.actors = o["Actors"].ToString();
+            curr.plot = o["Plot"].ToString();
+            curr.language = o["Language"].ToString();
+            curr.awards = o["Awards"].ToString();
+            curr.imdbRating = imdbRating;
+
+            //modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Awards"].ToString(), imdbRating);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Search()
         {
             if (textBox4.Text.Trim().Length != 0)
             {
-                
+
                 pageNumber.Text = "1";
-                povleciSearchPodatoci(textBox4.Text, 1);                
+                povleciSearchPodatoci(textBox4.Text, 1);
                 moreResults = checkBox1.Checked = false;
                 listBox1.Items.Clear();
                 foreach (SearchMovie film in searchList)
                 {
                     listBox1.Items.Add(film);
-                }                
+                }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Search();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -332,9 +349,10 @@ namespace MovieTracker
         private void details_Click(object sender, EventArgs e)
         {
             povleciDetalniPodatoci(curr.imdbID);
-            Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
-                        
-            if(modal.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+            //Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
+            Modal modal = new MovieTracker.Modal(curr, addWL.Enabled, addW.Enabled, internet);
+
+            if (modal.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
             {
                 if(_addW==true && modal.watchedButton == false)
                 {
@@ -419,28 +437,28 @@ namespace MovieTracker
             povleciDetalniPodatoci(curr.imdbID);
             using (var ctx = new MovieContext())
             {
-                var type = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Select(m => m.Type).SingleOrDefault();
+                var type = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Select(m => m.Type).SingleOrDefault();
 
                 if (type == null)
                 {
                     var movie = new Movie
                     {
-                        ImdbID = modalMovie.imdbID,
-                        Title = modalMovie.title,
-                        Year = modalMovie.year,
-                        Release = modalMovie.release,
-                        Runtime = modalMovie.runtime,
-                        Director = modalMovie.director,
-                        Actors = modalMovie.actors,
-                        Plot = modalMovie.plot,
-                        Language = modalMovie.language,
-                        Awards = modalMovie.awards,
-                        Image = modalMovie.poster,
-                        Rating = (decimal)modalMovie.imdbRating,
+                        ImdbID = curr.imdbID,
+                        Title = curr.title,
+                        Year = curr.year,
+                        Release = curr.release,
+                        Runtime = curr.runtime,
+                        Director = curr.director,
+                        Actors = curr.actors,
+                        Plot = curr.plot,
+                        Language = curr.language,
+                        Awards = curr.awards,
+                        Image = curr.poster,
+                        Rating = (decimal)curr.imdbRating,
                         Type = 1
                     };
 
-                    foreach (string genre in modalMovie.genres)
+                    foreach (string genre in curr.genres)
                     {
                         if (ctx.Genres.Any(m => m.Name == genre) == false)
                         {
@@ -460,7 +478,7 @@ namespace MovieTracker
                 }
                 else if (type == 0)
                 {
-                    var movie = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).SingleOrDefault();
+                    var movie = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).SingleOrDefault();
                     da.UpdateStatus(movie, 1);
                 }
             }
@@ -473,28 +491,28 @@ namespace MovieTracker
 			povleciDetalniPodatoci(curr.imdbID);
             using (var ctx = new MovieContext())
             {
-                var type = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).Select(m => m.Type).SingleOrDefault();
+                var type = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Select(m => m.Type).SingleOrDefault();
 
                 if (type == null)
                 {
                     var movie = new Movie
                     {
-                        ImdbID = modalMovie.imdbID,
-                        Title = modalMovie.title,
-                        Year = modalMovie.year,
-                        Release = modalMovie.release,
-                        Runtime = modalMovie.runtime,
-                        Director = modalMovie.director,
-                        Actors = modalMovie.actors,
-                        Plot = modalMovie.plot,
-                        Language = modalMovie.language,
-                        Awards = modalMovie.awards,
-                        Image = modalMovie.poster,
-                        Rating = (decimal)modalMovie.imdbRating,
+                        ImdbID = curr.imdbID,
+                        Title = curr.title,
+                        Year = curr.year,
+                        Release = curr.release,
+                        Runtime = curr.runtime,
+                        Director = curr.director,
+                        Actors = curr.actors,
+                        Plot = curr.plot,
+                        Language = curr.language,
+                        Awards = curr.awards,
+                        Image = curr.poster,
+                        Rating = (decimal)curr.imdbRating,
                         Type = 2
                     };
 
-                    foreach (string genre in modalMovie.genres)
+                    foreach (string genre in curr.genres)
                     {
                         Genre g = new Genre { Name = genre };
                         if (ctx.Genres.Any(m => m.Name == genre) == false)
@@ -513,12 +531,12 @@ namespace MovieTracker
                 }
                 else if (type == 0)
                 {
-                    var movie = ctx.Movies.Where(m => m.ImdbID == modalMovie.imdbID).SingleOrDefault();
+                    var movie = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).SingleOrDefault();
                     da.UpdateStatus(movie, 2);
                 }
                 else if (type == 1)
                 {
-                    var test = ctx.Movies.Single(m => m.ImdbID == modalMovie.imdbID);
+                    var test = ctx.Movies.Single(m => m.ImdbID == curr.imdbID);
                     test.Type = 2;
                     ctx.SaveChanges();
                 }
@@ -800,6 +818,27 @@ namespace MovieTracker
                 radioButton2.Checked = radioButton1.Checked = radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
             }
 
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Search();
+                e.Handled = e.SuppressKeyPress = true;
+            }
+        }
+
+        private void textBox4_MouseEnter(object sender, EventArgs e)
+        {
+            TextBox TB = (TextBox)sender;
+            toolTip1.Show("Enter movie title", TB, 3000);
+        }
+
+        private void textBox4_Enter(object sender, EventArgs e)
+        {
+            TextBox TB = (TextBox)sender;
+            toolTip1.Show("Enter movie title", TB, 3000);
         }
     }
 }

@@ -16,12 +16,28 @@ namespace MovieTracker
         public string imdbID { get; set; }
         public string poster { get; set; }
 
+        public DateTime release
+        {
+            get; set;
+        }
+        public int runtime { get; set; }
+        public List<string> genres { get; set; }
+        public string director { get; set; }
+        public string actors { get; set; }
+        public string plot { get; set; }
+        public string language { get; set; }
+        public string awards { get; set; }
+        public float imdbRating { get; set; }
+
         public SearchMovie(string title, int year, string imdbID, string poster)
         {
             this.title = title;
             this.year = year;
             this.imdbID = imdbID;
             this.poster = poster;
+
+            release = new DateTime();
+            genres = new List<string>();
         }
 
         public void postaviPoster(PictureBox pictureBox, bool internet)
@@ -60,5 +76,48 @@ namespace MovieTracker
             return title + " - " + year.ToString();
             //return base.ToString();
         }
+
+        public string Rating()
+        {
+            if (imdbRating == 0)
+                return "N/A";
+            else return string.Format("{0:0.0}", imdbRating); //.ToString();
+        }
+        
+        public string Runtime()
+        {
+            if (runtime == 0)
+                return "N/A";
+            else return runtime.ToString() + " min";
+        }
+
+        public string Release()
+        {
+            if (release.Year != 1800)
+                return release.Month + "." + release.Day + "." + release.Year;
+            else
+            {
+                return "N/A";
+            }
+        }
+
+        public string Genres()
+        {
+            StringBuilder sb = new StringBuilder();
+            string last = genres.Last();
+            foreach (string s in genres)
+            {
+                if (s.Equals(last))
+                {
+                    sb.Append(s);
+                }
+                else
+                {
+                    sb.Append(s + ", ");
+                }
+            }
+            return sb.ToString();
+        }
+
     }
 }

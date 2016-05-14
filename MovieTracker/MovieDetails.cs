@@ -33,7 +33,7 @@ namespace MovieTracker
 
         }
 
-        public string Rating()
+        /*public string Rating()
         {
             if (imdbRating == 0)
                 return "N/A";
@@ -73,6 +73,6 @@ namespace MovieTracker
                 }  
             }
             return sb.ToString();
-        }
+        }*/
     }
 }
