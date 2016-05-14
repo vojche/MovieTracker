@@ -125,10 +125,39 @@ namespace MovieTracker.DAL
         public string GenresByMovie(Movie movie)
         {
             ctx = new MovieContext();
-            var query = ctx.Movies.Where(m => m.ImdbID == movie.ImdbID).Join(ctx.Genres, m => movie.Id, genre => genre.Id, (m, genre) => new { MovieName = m.Title, GenreName = genre.Name });
+            var genres = ctx.Movies.Where(m => m.ImdbID == movie.ImdbID).Select(g => g.Genres).SingleOrDefault().ToList();
             ctx.Dispose();
-            return query.ToString();
+            StringBuilder sb = new StringBuilder();
+            Genre last = genres.Last();
+            foreach (Genre g in genres)
+            {
+                if (g.Equals(last))
+                {
+                    sb.Append(g.Name);
+                }
+                else
+                {
+                    sb.Append(g.Name + ", ");
+                }
+            }
+            return sb.ToString();
         } 
+
+        public List<Movie> MoviesByGenre(int genre, int type)
+        {
+            ctx = new MovieContext();
+            var movies = ctx.Genres.Where(g => g.Id == genre).Select(m => m.Movies).SingleOrDefault().Where(t => t.Type == type).ToList();
+            ctx.Dispose();
+            return movies;
+        }
+
+        public List<Genre> AllGenres(int type)
+        {
+            ctx = new MovieContext();
+            var genres = ctx.Movies.Where(m => m.Type == type).SelectMany(g => g.Genres).Distinct().ToList();
+            ctx.Dispose();
+            return genres;
+        }
                
     }
 }

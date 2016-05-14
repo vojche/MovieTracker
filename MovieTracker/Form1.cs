@@ -575,7 +575,7 @@ namespace MovieTracker
                 textBox32.Text = selected.ReleaseMethod();
                 textBox27.Text = selected.RatingMethod();
                 textBox23.Text = selected.Awards;
-                textBox31.Text = selected.GenresMethod();
+                textBox31.Text = da.GenresByMovie(selected);
                 textBox30.Text = selected.Director;
                 textBox29.Text = selected.Actors;
                 textBox28.Text = selected.Language;
@@ -595,7 +595,7 @@ namespace MovieTracker
                 textBox22.Text = selected.ReleaseMethod();
                 textBox17.Text = selected.RatingMethod();
                 textBox3.Text = selected.Awards;
-                //textBox21.Text = da.GenresByMovie(selected);
+                textBox21.Text = da.GenresByMovie(selected);
                 textBox20.Text = selected.Director;
                 textBox19.Text = selected.Actors;
                 textBox18.Text = selected.Language;
@@ -630,6 +630,13 @@ namespace MovieTracker
                 textBox30.Clear();
                 textBox31.Clear();
                 textBox32.Clear();
+                comboBox2.Items.Clear();
+
+                List<Genre> list = da.AllGenres(2);
+                foreach (Genre g in list)
+                {
+                    comboBox2.Items.Add(g.Name);
+                }
 
                 WatchedMovies.Clear();
                 WatchedMovies = da.ReturnList(2);
@@ -659,6 +666,13 @@ namespace MovieTracker
                 textBox20.Clear();
                 textBox21.Clear();
                 textBox22.Clear();
+                comboBox1.Items.Clear();
+
+                List<Genre> list = da.AllGenres(1);
+                foreach (Genre g in list)
+                {
+                    comboBox1.Items.Add(g.Name);
+                }
 
                 WatchlistMovies.Clear();
                 WatchlistMovies = da.ReturnList(1);
@@ -735,6 +749,14 @@ namespace MovieTracker
             textBox31.Clear();
             textBox32.Clear();
 
+            comboBox2.Items.Clear();
+
+            List<Genre> list = da.AllGenres(2);
+            foreach (Genre g in list)
+            {
+               comboBox2.Items.Add(g.Name);
+            }
+
             if (WatchedMovies.Count != 0)
             {
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
@@ -770,6 +792,14 @@ namespace MovieTracker
             textBox19.Clear();
             textBox18.Clear();
             textBox16.Clear();
+
+            comboBox1.Items.Clear();
+
+            List<Genre> list = da.AllGenres(1);
+            foreach (Genre g in list)
+            {
+                comboBox1.Items.Add(g.Name);
+            }
 
             if (WatchlistMovies.Count > 0)
             {
@@ -839,6 +869,56 @@ namespace MovieTracker
         {
             TextBox TB = (TextBox)sender;
             toolTip1.Show("Enter movie title", TB, 3000);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button5.Enabled = false;
+            pictureBox5.Image = null;
+            textBox23.Clear();
+            textBox24.Clear();
+            textBox25.Clear();
+            textBox26.Clear();
+            textBox27.Clear();
+            textBox28.Clear();
+            textBox29.Clear();
+            textBox30.Clear();
+            textBox31.Clear();
+            textBox32.Clear();
+
+            int id = comboBox2.SelectedIndex + 1;
+            List<Movie> movies = new List<Movie>();
+            movies = da.MoviesByGenre(id, 2);
+            watchedList.Items.Clear();
+            foreach (Movie m in movies)
+            {
+                watchedList.Items.Add(m);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button2.Enabled = button3.Enabled = false;
+            pictureBox3.Image = null;
+            textBox3.Clear();
+            textBox14.Clear();
+            textBox15.Clear();
+            textBox16.Clear();
+            textBox17.Clear();
+            textBox18.Clear();
+            textBox19.Clear();
+            textBox20.Clear();
+            textBox21.Clear();
+            textBox22.Clear();
+
+            int id = comboBox1.SelectedIndex + 1;
+            List<Movie> movies = new List<Movie>();
+            movies = da.MoviesByGenre(id, 1);
+            toWatchList.Items.Clear();
+            foreach (Movie m in movies)
+            {
+                toWatchList.Items.Add(m);
+            }
         }
     }
 }

@@ -102,25 +102,5 @@ namespace MovieTracker
                 return "N/A";
             }
         }
-
-        public string GenresMethod()
-        {
-            StringBuilder sb = new StringBuilder();
-            //string last = " ";
-            /*foreach (Genre g in Genres)
-            {
-                if (s.Equals(last))
-                {
-                    sb.Append(s);
-                }
-                else
-                {
-                    sb.Append(g.Name + ", ");
-                //}
-            }
-            return sb.ToString();*/
-            //return Genres.ToString();
-            return "TREBA DA SE NAPRAVI !!!";
-        }
     }
 }

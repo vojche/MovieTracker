@@ -509,34 +509,11 @@
             // 
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Action",
-            "Adventure",
-            "Adult",
-            "Animation",
-            "Bigraphy",
-            "Comedy",
-            "Crime",
-            "Documentary",
-            "Drama",
-            "Family",
-            "Fantasy",
-            "Film-Noir",
-            "History",
-            "Horror",
-            "Music",
-            "N/A",
-            "Musical",
-            "Mystery",
-            "Romance",
-            "Sci-Fi",
-            "Sport",
-            "Thriller",
-            "N/A"});
             this.comboBox1.Location = new System.Drawing.Point(84, 51);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 5;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label17
             // 
@@ -874,34 +851,11 @@
             // 
             this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Action",
-            "Adventure",
-            "Adult",
-            "Animation",
-            "Bigraphy",
-            "Comedy",
-            "Crime",
-            "Documentary",
-            "Drama",
-            "Family",
-            "Fantasy",
-            "Film-Noir",
-            "History",
-            "Horror",
-            "Music",
-            "N/A",
-            "Musical",
-            "Mystery",
-            "Romance",
-            "Sci-Fi",
-            "Sport",
-            "Thriller",
-            "N/A"});
             this.comboBox2.Location = new System.Drawing.Point(84, 51);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 5;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label2
             // 
