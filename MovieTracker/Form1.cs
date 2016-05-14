@@ -839,6 +839,14 @@ namespace MovieTracker
             textBox18.Clear();
             textBox16.Clear();
 
+            comboBox1.Items.Clear();
+
+            List<Genre> list = da.AllGenres(1);
+            foreach (Genre g in list)
+            {
+                comboBox1.Items.Add(g.Name);
+            }
+
             if (WatchlistMovies.Count > 0)
             {
                 radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
@@ -886,9 +894,9 @@ namespace MovieTracker
             textBox31.Clear();
             textBox32.Clear();
 
-            int id = comboBox2.SelectedIndex + 1;
+            string genre = comboBox2.SelectedItem as string;
             List<Movie> movies = new List<Movie>();
-            movies = da.MoviesByGenre(id, 2);
+            movies = da.MoviesByGenre(genre, 2);
             watchedList.Items.Clear();
             foreach (Movie m in movies)
             {
@@ -911,9 +919,9 @@ namespace MovieTracker
             textBox21.Clear();
             textBox22.Clear();
 
-            int id = comboBox1.SelectedIndex + 1;
+            string genre = comboBox1.SelectedItem as string;
             List<Movie> movies = new List<Movie>();
-            movies = da.MoviesByGenre(id, 1);
+            movies = da.MoviesByGenre(genre, 1);
             toWatchList.Items.Clear();
             foreach (Movie m in movies)
             {

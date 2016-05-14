@@ -143,10 +143,10 @@ namespace MovieTracker.DAL
             return sb.ToString();
         } 
 
-        public List<Movie> MoviesByGenre(int genre, int type)
+        public List<Movie> MoviesByGenre(string genre, int type)
         {
             ctx = new MovieContext();
-            var movies = ctx.Genres.Where(g => g.Id == genre).Select(m => m.Movies).SingleOrDefault().Where(t => t.Type == type).ToList();
+            var movies = ctx.Genres.Where(g => g.Name == genre).Select(m => m.Movies).SingleOrDefault().Where(t => t.Type == type).ToList();
             ctx.Dispose();
             return movies;
         }
