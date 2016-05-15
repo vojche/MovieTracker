@@ -463,7 +463,7 @@
             this.groupBox5.Size = new System.Drawing.Size(262, 488);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Movies to - watch";
+            this.groupBox5.Text = "Movies to watch";
             // 
             // groupBox7
             // 
@@ -477,7 +477,7 @@
             this.groupBox7.Size = new System.Drawing.Size(247, 83);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Sorting & Filtring";
+            this.groupBox7.Text = "Sorting && Filtering";
             // 
             // radioButton2
             // 
@@ -805,7 +805,7 @@
             this.groupBox2.Size = new System.Drawing.Size(262, 488);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Movies to - watch";
+            this.groupBox2.Text = "Watched movies";
             // 
             // groupBox3
             // 
@@ -819,7 +819,7 @@
             this.groupBox3.Size = new System.Drawing.Size(247, 83);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Sorting & Filtring";
+            this.groupBox3.Text = "Sorting && Filtering";
             // 
             // radioButton3
             // 
@@ -1043,7 +1043,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 13);
             this.label11.TabIndex = 45;
-            this.label11.Text = "Movies between 8.5 - 9.5\r\n";
+            this.label11.Text = "Movies between 8.5 - 9.4\r\n";
             // 
             // progressBar4
             // 
@@ -1069,7 +1069,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(127, 13);
             this.label10.TabIndex = 42;
-            this.label10.Text = "Movies between 7.5 - 8.5\r\n";
+            this.label10.Text = "Movies between 7.5 - 8.4";
             // 
             // progressBar3
             // 
@@ -1095,7 +1095,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(127, 13);
             this.label9.TabIndex = 39;
-            this.label9.Text = "Movies between 6.5 - 7.5";
+            this.label9.Text = "Movies between 6.5 - 7.4";
             // 
             // progressBar2
             // 
@@ -1121,7 +1121,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 13);
             this.label8.TabIndex = 36;
-            this.label8.Text = "Movies between 5.5 - 6.5";
+            this.label8.Text = "Movies between 5.5 - 6.4";
             // 
             // textBox8
             // 
