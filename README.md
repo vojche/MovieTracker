@@ -93,7 +93,65 @@ MovieTracker апликацијата се заснова на класата Mo
 
 Исто така, во проектот е креирана Data Access Layer класа (DAMovie) којa ни овозможува полесен пристап до базата на податоци како и реискористливост на дефинираните функции на повеќе места во апликацијата.
 
-####3.2	Упатство за користење на апликацијата
+####3.2 Опис на функција
+
+Оваа функција се користи за да се повлечат деталните податоци за филмот од веб сервисот кои подоцна ќе се запишат во базата. Пред да се повлечат овие детални податоци, апликацијата има основни информации за филмот кои се преземаат кога корисникот пребарува одреден наслов.
+
+Функцијата povleciDetalniPodatoci на влез прима аргумент string кој подоцна се користи за повик до веб сервисот. Прво се иницијализира објект од класата WebClient, а потоа со објект од оваа класа се повикува методот DownloadString каде што се внесува url адреса од каде што треба да се повлечат податоците.
+
+Податоците се преземаат во json формат и подоцна се парсираат, се прават сите проверки и вредностите се запишуваат во објектот curr од тип SearchMovie. Објектот curr е објект кој го претставува селектираниот филм од листата во која се прикажани филмовите кои одговараат на клучбниот збор по кој пребарува корисникот.
+
+	private void povleciDetalniPodatoci(string id)
+	{
+            WebClient c = new WebClient();
+            string data = c.DownloadString("http://www.omdbapi.com/?i=" + id + "&plot=full&r=json");
+            JObject o = JObject.Parse(data);
+            DateTime released;
+            if (!o["Released"].ToString().Equals("N/A"))
+            {
+                string date = o["Released"].ToString();
+                string[] d = date.Split(' ');
+                int godina = 0;
+                int.TryParse(d[2], out godina);
+                int den = 0;
+                int.TryParse(d[0], out den);
+
+                released = new DateTime(godina, mesec(d[1]), den);
+            }
+            else
+            {
+                released = new DateTime(1800, 01, 01);
+            }    
+
+            List<string> genres = new List<string>();
+
+            string[] gen2 = o["Genre"].ToString().Split(',');
+            foreach (string i in gen2)
+            {
+                genres.Add(i.Trim());
+            }
+
+            string[] runtimeA = o["Runtime"].ToString().Split(' ');
+            int runtime = 0;
+            int.TryParse(runtimeA[0], out runtime);
+            float imdbRating = 0;
+            if (!o["imdbRating"].ToString().Equals("N/A"))
+            {
+                imdbRating = (float)o["imdbRating"];
+            }
+                        
+            curr.release = released;
+            curr.runtime = runtime;
+            curr.genres = genres;
+            curr.director = o["Director"].ToString();
+            curr.actors = o["Actors"].ToString();
+            curr.plot = o["Plot"].ToString();
+            curr.language = o["Language"].ToString();
+            curr.awards = o["Awards"].ToString();
+            curr.imdbRating = imdbRating;            
+	}
+        
+####3.3	Упатство за користење на апликацијата
 
 Бидејќи апликацијата е поврзана со база на податоци, мора да имате инсталирано SQL Server, заедно со LocalDB и да направите конекција со истата, како би можеле да ја извршите апликацијата.
 
