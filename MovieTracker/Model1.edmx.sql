@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/12/2016 03:03:44
+-- Date Created: 05/15/2016 03:10:26
 -- Generated from EDMX file: D:\Projects\MovieTracker\MovieTracker\Model1.edmx
 -- --------------------------------------------------
 
@@ -31,11 +31,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Genres]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Genres];
 GO
-IF OBJECT_ID(N'[dbo].[Movies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Movies];
-GO
 IF OBJECT_ID(N'[dbo].[MovieGenres]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MovieGenres];
+GO
+IF OBJECT_ID(N'[dbo].[Movies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Movies];
 GO
 
 -- --------------------------------------------------
@@ -53,9 +53,8 @@ GO
 CREATE TABLE [dbo].[Movies] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ImdbID] nvarchar(10)  NOT NULL,
-    [Title] nvarchar(50)  NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
     [Year] int  NOT NULL,
-	[Release] datetime NULL,
     [Runtime] int  NOT NULL,
     [Director] nvarchar(max)  NOT NULL,
     [Actors] nvarchar(max)  NOT NULL,
@@ -64,7 +63,8 @@ CREATE TABLE [dbo].[Movies] (
     [Language] nvarchar(max)  NOT NULL,
     [Image] nvarchar(max)  NULL,
     [Rating] decimal(2,1)  NOT NULL,
-    [Type] int  NULL
+    [Type] int  NULL,
+    [Release] datetime  NULL
 );
 GO
 

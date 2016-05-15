@@ -4,79 +4,79 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MoviesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Genres">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MovieGenres">
-          <Key>
-            <PropertyRef Name="Genres_Id" />
-            <PropertyRef Name="Movies_Id" />
-          </Key>
-          <Property Name="Genres_Id" Type="int" Nullable="false" />
-          <Property Name="Movies_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Movies">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImdbID" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
-          <Property Name="Release" Type="datetime" />
-          <Property Name="Runtime" Type="int" Nullable="false" />
-          <Property Name="Director" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Actors" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Plot" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Awards" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Image" Type="nvarchar(max)" />
-          <Property Name="Rating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
-          <Property Name="Type" Type="int" />
-        </EntityType>
-        <Association Name="FK_MovieGenres_Genre">
-          <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
-          <End Role="MovieGenres" Type="Self.MovieGenres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genres">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MovieGenres">
-              <PropertyRef Name="Genres_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MovieGenres_Movie">
-          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
-          <End Role="MovieGenres" Type="Self.MovieGenres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movies">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MovieGenres">
-              <PropertyRef Name="Movies_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="MoviesModelStoreContainer">
-          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MovieGenres" EntityType="Self.MovieGenres" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_MovieGenres_Genre" Association="Self.FK_MovieGenres_Genre">
-            <End Role="Genres" EntitySet="Genres" />
-            <End Role="MovieGenres" EntitySet="MovieGenres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MovieGenres_Movie" Association="Self.FK_MovieGenres_Movie">
-            <End Role="Movies" EntitySet="Movies" />
-            <End Role="MovieGenres" EntitySet="MovieGenres" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="MoviesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MoviesModelStoreContainer">
+    <EntitySet Name="Genres" EntityType="MoviesModel.Store.Genres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movies" EntityType="MoviesModel.Store.Movies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MovieGenres" EntityType="MoviesModel.Store.MovieGenres" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_MovieGenres_Genre" Association="MoviesModel.Store.FK_MovieGenres_Genre">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MovieGenres_Movie" Association="MoviesModel.Store.FK_MovieGenres_Movie">
+      <End Role="Movie" EntitySet="Movies" />
+      <End Role="MovieGenres" EntitySet="MovieGenres" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImdbID" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Runtime" Type="int" Nullable="false" />
+    <Property Name="Director" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Actors" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Plot" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Awards" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Language" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Rating" Type="decimal" Nullable="false" Precision="2" Scale="1" />
+    <Property Name="Type" Type="int" Nullable="true" />
+    <Property Name="Release" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MovieGenres">
+    <Key>
+      <PropertyRef Name="Genres_Id" />
+      <PropertyRef Name="Movies_Id" />
+    </Key>
+    <Property Name="Genres_Id" Type="int" Nullable="false" />
+    <Property Name="Movies_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MovieGenres_Genre">
+    <End Role="Genre" Type="MoviesModel.Store.Genres" Multiplicity="1" />
+    <End Role="MovieGenres" Type="MoviesModel.Store.MovieGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="Genres_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MovieGenres_Movie">
+    <End Role="MovieGenres" Type="MoviesModel.Store.MovieGenres" Multiplicity="*" />
+    <End Role="Movie" Type="MoviesModel.Store.Movies" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieGenres">
+        <PropertyRef Name="Movies_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MoviesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -94,7 +94,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ImdbID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Runtime" Type="Int32" Nullable="false" />
           <Property Name="Director" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -137,8 +137,7 @@
     <EntitySetMapping Name="Movies">
       <EntityTypeMapping TypeName="IsTypeOf(MoviesModel.Movie)">
         <MappingFragment StoreEntitySet="Movies">
-          <ScalarProperty Name="Release" ColumnName="Release" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ImdbID" ColumnName="ImdbID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Year" ColumnName="Year" />
@@ -151,6 +150,7 @@
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Release" ColumnName="Release" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
