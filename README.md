@@ -57,3 +57,36 @@
   ![Watchlist](https://github.com/vojches/MovieTracker/blob/screenshots/screen7.png)
 
 ###3.	Претставување на решението 
+
+MovieTracker апликацијата се заснова на класата Movie, каде се чуваат сите податоци за филмовите, како и некои методи кои се користат за приказ на атрибутите. Врз основа на оваа класа и класата Genre е креирана базата на податоци, при што за нејзино креирање е искористен Entity Framework заради олеснително мапирање и креирање на табелите.
+
+	public partial class Movie
+	{
+	        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+	        public Movie()
+	        {
+	            this.Genres = new HashSet<Genre>();
+	        }
+	    
+	        public int Id { get; set; }
+	        public string ImdbID { get; set; }
+	        public string Title { get; set; }
+	        public int Year { get; set; }
+	        public int Runtime { get; set; }
+	        public string Director { get; set; }
+	        public string Actors { get; set; }
+	        public string Plot { get; set; }
+	        public string Awards { get; set; }
+	        public string Language { get; set; }
+	        public string Image { get; set; }
+	        public decimal Rating { get; set; }
+	        public Nullable<int> Type { get; set; }
+	        public Nullable<System.DateTime> Release { get; set; }
+	    
+	        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+	        public virtual ICollection<Genre> Genres { get; set; }
+	}
+
+Дополнително освен основните податоците за филмот, се чува и Type атрибут, чии вредности (null, 0, 1, 2) соодветно ни укажуваат дали филмот го нема воопшто во базата на податоци, дали го има, но не е ниту гледан, ниту би сакале да го гледаме во иднина (претходно бил избришан од некоја од листите), дали филмот планираме да го гледаме или пак филмот е веќе изгледан.
+
+Исто така, во проектот е креирана Data Access Layer класа (DAMovie) којa ни овозможува полесен пристап до базата на податоци како и реискористливост на дефинираните функции на повеќе места во апликацијата.
