@@ -101,7 +101,7 @@ MovieTracker апликацијата се заснова на класата Mo
 
 Откако ќе кликнете на копчето Add Connection во Server Explorer, ќе ви се отвори нов прозорец каде треба да го внесете името на локалниот сервер, како и името на базата која што сакате да ја креирате. Во нашиот случај, името на базата МОРА да биде Movie.
 
-->![Database](https://github.com/vojches/MovieTracker/blob/screenshots/screen9.png)<-
+![Database](https://github.com/vojches/MovieTracker/blob/screenshots/screen9.png)
 
 Базата треба да ви се појави во Server Explorer прозорецот, што означува успешно креирање на истата. За да ги генерирате потребните табели како апликацијта би функционирала, потребно е да jа извршите скриптата под име Model1.edmx.sql која се наоѓа во MovieTracker фолдерот.
 
