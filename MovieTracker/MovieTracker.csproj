@@ -96,7 +96,6 @@
     <Compile Include="Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MovieDetails.cs" />
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,7 +126,6 @@
     </None>
     <None Include="Movie.datasource" />
     <None Include="MovieContext.datasource" />
-    <None Include="MovieDetails.datasource" />
     <None Include="ObservableListSource`1[].datasource" />
     <None Include="packages.config" />
     <None Include="Program.datasource" />
@@ -162,7 +160,6 @@
     </Content>
     <Content Include="Pictures\default.png" />
     <Content Include="Pictures\logo.png" />
-    <Content Include="Pictures\logo1.png" />
     <Content Include="Pictures\omdb.png" />
   </ItemGroup>
   <ItemGroup />
