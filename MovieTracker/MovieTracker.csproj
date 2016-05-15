@@ -162,6 +162,7 @@
     </Content>
     <Content Include="Pictures\default.png" />
     <Content Include="Pictures\logo.png" />
+    <Content Include="Pictures\logo1.png" />
     <Content Include="Pictures\omdb.png" />
   </ItemGroup>
   <ItemGroup />

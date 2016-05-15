@@ -38,7 +38,7 @@ namespace MovieTracker
             this.StartPosition = FormStartPosition.CenterScreen;
             checkInternetConnection();
             MaximizeBox = false;
-            pictureBox2.Image = Bitmap.FromFile(@"..\..\Pictures\logo.png");
+            pictureBox2.Image = Bitmap.FromFile(@"..\..\Pictures\logo1.png");
             pictureBox4.Image = Bitmap.FromFile(@"..\..\Pictures\omdb.png");
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             searchList = new List<SearchMovie>();
