@@ -607,6 +607,7 @@ namespace MovieTracker
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (tabControl1.SelectedIndex == 0)
             {
                 listBox1.ClearSelected();
@@ -618,6 +619,7 @@ namespace MovieTracker
             }
             else if (tabControl1.SelectedIndex == 1)
             {
+                
                 button5.Enabled = false;
                 pictureBox5.Image = null;
                 textBox23.Clear();
@@ -631,12 +633,13 @@ namespace MovieTracker
                 textBox31.Clear();
                 textBox32.Clear();
                 comboBox2.Items.Clear();
-
+                comboBox2.Items.Add("All");
                 List<Genre> list = da.AllGenres(2);
                 foreach (Genre g in list)
                 {
                     comboBox2.Items.Add(g.Name);
                 }
+                comboBox2.SelectedIndex = 0;
 
                 WatchedMovies.Clear();
                 WatchedMovies = da.ReturnList(2);
@@ -667,12 +670,14 @@ namespace MovieTracker
                 textBox21.Clear();
                 textBox22.Clear();
                 comboBox1.Items.Clear();
+                comboBox1.Items.Add("All");
 
                 List<Genre> list = da.AllGenres(1);
                 foreach (Genre g in list)
                 {
                     comboBox1.Items.Add(g.Name);
                 }
+                comboBox1.SelectedIndex = 0;
 
                 WatchlistMovies.Clear();
                 WatchlistMovies = da.ReturnList(1);
@@ -687,6 +692,7 @@ namespace MovieTracker
                     radioButton1.Enabled = radioButton2.Enabled = comboBox1.Enabled = true;
                 }               
             }
+            
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
@@ -750,20 +756,27 @@ namespace MovieTracker
             textBox32.Clear();
 
             comboBox2.Items.Clear();
-
+            comboBox2.Items.Add("All");
             List<Genre> list = da.AllGenres(2);
             foreach (Genre g in list)
             {
                comboBox2.Items.Add(g.Name);
             }
+            //comboBox2.SelectedIndex = 0;
 
-            if (WatchedMovies.Count != 0)
+            WatchedMovies = da.ReturnList(2);
+            
+            if (/*WatchedMovies.Count != 0 &&*/ watchedList.Items.Count != 0)
             {
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
             else
             {
                 radioButton4.Checked = radioButton3.Checked = radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = false;
+            }
+            if (WatchedMovies.Count != 0)
+            {
+                comboBox2.Enabled = true;
             }
         }
 
@@ -881,51 +894,90 @@ namespace MovieTracker
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button5.Enabled = false;
-            pictureBox5.Image = null;
-            textBox23.Clear();
-            textBox24.Clear();
-            textBox25.Clear();
-            textBox26.Clear();
-            textBox27.Clear();
-            textBox28.Clear();
-            textBox29.Clear();
-            textBox30.Clear();
-            textBox31.Clear();
-            textBox32.Clear();
-
-            string genre = comboBox2.SelectedItem as string;
-            List<Movie> movies = new List<Movie>();
-            movies = da.MoviesByGenre(genre, 2);
-            watchedList.Items.Clear();
-            foreach (Movie m in movies)
+            if (comboBox2.SelectedIndex == 0)
             {
-                watchedList.Items.Add(m);
+                WatchedMovies.Clear();
+                WatchedMovies = da.ReturnList(2);
+                watchedList.Items.Clear();
+
+                radioButton3.Checked = radioButton4.Checked = false;
+                if (WatchedMovies.Count != 0)
+                {
+                    radioButton3.Enabled = radioButton4.Enabled = true;
+                    foreach (Movie m in WatchedMovies)
+                    {
+                        watchedList.Items.Add(m);
+                    }
+                }
+                else
+                {
+                    radioButton3.Enabled = radioButton4.Enabled = false;
+                }
+                
+            }
+            else {
+                radioButton4.Checked = radioButton3.Checked = button5.Enabled = false;
+                pictureBox5.Image = null;
+                textBox23.Clear();
+                textBox24.Clear();
+                textBox25.Clear();
+                textBox26.Clear();
+                textBox27.Clear();
+                textBox28.Clear();
+                textBox29.Clear();
+                textBox30.Clear();
+                textBox31.Clear();
+                textBox32.Clear();
+
+                radioButton4.Enabled = radioButton3.Enabled = true;
+                string genre = comboBox2.SelectedItem as string;
+                List<Movie> movies = new List<Movie>();
+                WatchedMovies = da.MoviesByGenre(genre, 2);
+                watchedList.Items.Clear();
+                foreach (Movie m in WatchedMovies)
+                {
+                    watchedList.Items.Add(m);
+                }
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button2.Enabled = button3.Enabled = false;
-            pictureBox3.Image = null;
-            textBox3.Clear();
-            textBox14.Clear();
-            textBox15.Clear();
-            textBox16.Clear();
-            textBox17.Clear();
-            textBox18.Clear();
-            textBox19.Clear();
-            textBox20.Clear();
-            textBox21.Clear();
-            textBox22.Clear();
-
-            string genre = comboBox1.SelectedItem as string;
-            List<Movie> movies = new List<Movie>();
-            movies = da.MoviesByGenre(genre, 1);
-            toWatchList.Items.Clear();
-            foreach (Movie m in movies)
+            if (comboBox1.SelectedIndex == 0)
             {
-                toWatchList.Items.Add(m);
+                WatchlistMovies.Clear();
+                WatchlistMovies = da.ReturnList(1);
+                toWatchList.Items.Clear();
+                radioButton1.Checked = radioButton2.Checked = false;
+                foreach (Movie m in WatchlistMovies)
+                {
+                    toWatchList.Items.Add(m);
+                }
+            }
+            else {
+                radioButton1.Checked = radioButton2.Checked = button2.Enabled = button3.Enabled = false;
+                pictureBox3.Image = null;
+                textBox3.Clear();
+                textBox14.Clear();
+                textBox15.Clear();
+                textBox16.Clear();
+                textBox17.Clear();
+                textBox18.Clear();
+                textBox19.Clear();
+                textBox20.Clear();
+                textBox21.Clear();
+                textBox22.Clear();
+
+                string genre = comboBox1.SelectedItem as string;
+
+                radioButton1.Enabled = radioButton2.Enabled = true;
+                List<Movie> movies = new List<Movie>();
+                WatchlistMovies = da.MoviesByGenre(genre, 1);
+                toWatchList.Items.Clear();
+                foreach (Movie m in WatchlistMovies)
+                {
+                    toWatchList.Items.Add(m);
+                }
             }
         }
     }
