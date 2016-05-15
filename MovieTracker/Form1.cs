@@ -22,8 +22,6 @@ namespace MovieTracker
     {
         public List<SearchMovie> searchList;
         public SearchMovie curr;
-        //public MovieDetails modalMovie;
-        //public static string x { get; set; }
         public bool moreResults = false;
         public bool nextB { get; set; }
         public bool prevB { get; set; }
@@ -101,11 +99,7 @@ namespace MovieTracker
                 int IsAdded = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Count();
 
                 if (IsAdded == 1)
-                {
-                    //var type = from movie in ctx.Movies
-                    //           where movie.ImdbID == curr.imdbID
-                    //           select movie.Type;
-
+                {                   
                     var type = ctx.Movies.Where(m => m.ImdbID == curr.imdbID).Select(m => m.Type).SingleOrDefault();
 
                     if (type == null)
@@ -157,10 +151,7 @@ namespace MovieTracker
 
             if (textBox1.Text.Length != 0)
                 details.Enabled = internet;
-
-            /*if (textBox4.Text.Length != 0)
-                checkBox1.Enabled = internet;*/
-
+                        
             textBox4.ReadOnly =  !internet;
             
         }
@@ -249,7 +240,6 @@ namespace MovieTracker
             }
 
             return x;
-
         }
 
         private void povleciDetalniPodatoci(string id)
@@ -290,8 +280,7 @@ namespace MovieTracker
             {
                 imdbRating = (float)o["imdbRating"];
             }
-
-            //novo
+                        
             curr.release = released;
             curr.runtime = runtime;
             curr.genres = genres;
@@ -300,9 +289,7 @@ namespace MovieTracker
             curr.plot = o["Plot"].ToString();
             curr.language = o["Language"].ToString();
             curr.awards = o["Awards"].ToString();
-            curr.imdbRating = imdbRating;
-
-            //modalMovie = new MovieDetails(o["Title"].ToString(), (int)o["Year"], o["imdbID"].ToString(), o["Poster"].ToString(), released, runtime, genres, o["Director"].ToString(), o["Actors"].ToString(), o["Plot"].ToString(), o["Language"].ToString(), o["Awards"].ToString(), imdbRating);
+            curr.imdbRating = imdbRating;            
         }
 
         private void Search()
@@ -336,9 +323,7 @@ namespace MovieTracker
                 details.Enabled = true;
 
                 additionButtons();
-            }
-
-            
+            }            
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
@@ -348,8 +333,7 @@ namespace MovieTracker
 
         private void details_Click(object sender, EventArgs e)
         {
-            povleciDetalniPodatoci(curr.imdbID);
-            //Modal modal = new MovieTracker.Modal(modalMovie, addWL.Enabled, addW.Enabled, internet);
+            povleciDetalniPodatoci(curr.imdbID);            
             Modal modal = new MovieTracker.Modal(curr, addWL.Enabled, addW.Enabled, internet);
 
             if (modal.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
@@ -388,8 +372,7 @@ namespace MovieTracker
         }
 
         private void next_Click(object sender, EventArgs e)
-        {
-           
+        {           
                 int page = 0;
                 int.TryParse(pageNumber.Text, out page);
                 page += 1;
@@ -400,14 +383,11 @@ namespace MovieTracker
                 {
                     listBox1.Items.Add(film);
                 }
-                prev.Enabled = true;
-
-            
+                prev.Enabled = true;            
         }
 
         private void prev_Click(object sender, EventArgs e)
-        {
-            
+        {            
                 int page = 0;
                 int.TryParse(pageNumber.Text, out page);
                 page -= 1;
@@ -423,8 +403,7 @@ namespace MovieTracker
                     prev.Enabled = false;
                 else prev.Enabled = true;
 
-                next.Enabled = true;
-            
+                next.Enabled = true;            
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -762,11 +741,10 @@ namespace MovieTracker
             {
                comboBox2.Items.Add(g.Name);
             }
-            //comboBox2.SelectedIndex = 0;
-
+            
             WatchedMovies = da.ReturnList(2);
             
-            if (/*WatchedMovies.Count != 0 &&*/ watchedList.Items.Count != 0)
+            if (watchedList.Items.Count != 0)
             {
                 radioButton4.Enabled = radioButton3.Enabled = comboBox2.Enabled = true;
             }
@@ -780,15 +758,14 @@ namespace MovieTracker
             }
         }
 
-        // Delete movie from watchlist
-        private void button3_Click(object sender, EventArgs e)
+        private void WatchListButtons(int type)
         {
             Movie selected = toWatchList.SelectedItem as Movie;
-            da.UpdateStatus(selected, 0);
+            da.UpdateStatus(selected, type);
 
             toWatchList.Items.Remove(selected);
             WatchlistMovies.Remove(selected);
-            
+
             GeneralStatistic();
             RatingStatistic();
 
@@ -807,14 +784,17 @@ namespace MovieTracker
             textBox16.Clear();
 
             comboBox1.Items.Clear();
-
+            comboBox1.Items.Add("All");
             List<Genre> list = da.AllGenres(1);
             foreach (Genre g in list)
             {
                 comboBox1.Items.Add(g.Name);
             }
 
-            if (WatchlistMovies.Count > 0)
+
+            WatchlistMovies = da.ReturnList(1);
+
+            if (toWatchList.Items.Count != 0)
             {
                 radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
             }
@@ -822,58 +802,27 @@ namespace MovieTracker
             {
                 radioButton2.Checked = radioButton1.Checked = radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
             }
+            if (WatchlistMovies.Count != 0)
+            {
+                comboBox1.Enabled = true;
+            }
+        }
 
+        // Delete movie from watchlist
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WatchListButtons(0);        
         }
         
         // Add movie to watched
         private void button2_Click(object sender, EventArgs e)
         {
-            Movie selected = toWatchList.SelectedItem as Movie;
-            da.UpdateStatus(selected, 2); // 2 - watched
-
-            WatchlistMovies.Remove(selected);
-            toWatchList.Items.Remove(selected);
-            
-            GeneralStatistic();
-            RatingStatistic();
-
-            button3.Enabled = false;
-            button2.Enabled = false;
-            pictureBox3.Image = null;
-
-            textBox15.Clear();
-            textBox14.Clear();
-            textBox22.Clear();
-            textBox17.Clear();
-            textBox3.Clear();
-            textBox21.Clear();
-            textBox20.Clear();
-            textBox19.Clear();
-            textBox18.Clear();
-            textBox16.Clear();
-
-            comboBox1.Items.Clear();
-
-            List<Genre> list = da.AllGenres(1);
-            foreach (Genre g in list)
-            {
-                comboBox1.Items.Add(g.Name);
-            }
-
-            if (WatchlistMovies.Count > 0)
-            {
-                radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = true;
-            }
-            else
-            {
-                radioButton2.Checked = radioButton1.Checked = radioButton2.Enabled = radioButton1.Enabled = comboBox1.Enabled = false;
-            }
-
+            WatchListButtons(2);            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if(e.KeyCode==Keys.Enter && internet)
             {
                 Search();
                 e.Handled = e.SuppressKeyPress = true;
@@ -930,8 +879,7 @@ namespace MovieTracker
                 textBox32.Clear();
 
                 radioButton4.Enabled = radioButton3.Enabled = true;
-                string genre = comboBox2.SelectedItem as string;
-                List<Movie> movies = new List<Movie>();
+                string genre = comboBox2.SelectedItem as string;                
                 WatchedMovies = da.MoviesByGenre(genre, 2);
                 watchedList.Items.Clear();
                 foreach (Movie m in WatchedMovies)
@@ -949,9 +897,16 @@ namespace MovieTracker
                 WatchlistMovies = da.ReturnList(1);
                 toWatchList.Items.Clear();
                 radioButton1.Checked = radioButton2.Checked = false;
-                foreach (Movie m in WatchlistMovies)
+                if (WatchlistMovies.Count != 0)
                 {
-                    toWatchList.Items.Add(m);
+                    foreach (Movie m in WatchlistMovies)
+                    {
+                        toWatchList.Items.Add(m);
+                    }
+                }
+                else
+                {
+                    radioButton1.Enabled = radioButton2.Enabled = false;
                 }
             }
             else {
@@ -971,7 +926,7 @@ namespace MovieTracker
                 string genre = comboBox1.SelectedItem as string;
 
                 radioButton1.Enabled = radioButton2.Enabled = true;
-                List<Movie> movies = new List<Movie>();
+                
                 WatchlistMovies = da.MoviesByGenre(genre, 1);
                 toWatchList.Items.Clear();
                 foreach (Movie m in WatchlistMovies)
