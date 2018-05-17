@@ -1,6 +1,7 @@
 # MovieTracker
 
-######Windows Forms Project by: Vojche Stojanoski, Ivona Najdenkoska, Bojan Filipovski
+### Windows Forms Project by: Vojche Stojanoski, Ivona Najdenkoska, Bojan Filipovski
+
 ---
 ###1.	Oпис на апликацијата
 	
